@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="あしたの夜明け.com — 日常の記録、映画、趣味、雑記を綴る個人ブログ">
+  <title>あしたの夜明け.com | 〜日常の記録〜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Yusei+Magic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="site-brand">
+        <p class="site-logo">
+          <a href="index.html">あしたの夜明け.com</a>
+        </p>
+        <p class="site-subtitle">〜日常の記録〜</p>
+      </div>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">ホーム</a></li>
+          <li><a href="#">ブログ</a></li>
+          <li><a href="#">映画</a></li>
+          <li><a href="#">趣味</a></li>
+          <li><a href="#">プロフィール</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 id="hero-heading">日常を、静かに残す場所</h1>
+          <p>
+            あしたの夜明け.com は、日々の出来事や映画の感想、趣味の記録、
+            ふと思ったことを綴る個人ブログです。派手さよりも読みやすさを大切にしています。
+          </p>
+        </div>
+        <div class="hero-visual" role="img" aria-label="サイトのメインビジュアル（プレースホルダー）">
+          <span class="placeholder-label">Main Visual</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container content-layout">
+      <section class="latest-posts" aria-labelledby="latest-heading">
+        <h2 id="latest-heading">最新記事</h2>
+        <ul class="post-list">
+          <li class="post-card">
+            <a href="#" class="post-card-link">
+              <div class="post-thumb" aria-hidden="true"></div>
+              <div class="post-body">
+                <p class="post-meta">
+                  <time datetime="2026-06-28">2026年6月28日</time>
+                  <span class="post-category">日常の記録</span>
+                </p>
+                <h3 class="post-title">朝の散歩で見つけた小さな発見</h3>
+                <p class="post-excerpt">早朝の公園を歩いていたら、いつもと違う光の入り方に気づきました。特別な出来事ではないけれど、そういう瞬間を残しておきたい。</p>
+              </div>
+            </a>
+          </li>
+          <li class="post-card">
+            <a href="#" class="post-card-link">
+              <div class="post-thumb" aria-hidden="true"></div>
+              <div class="post-body">
+                <p class="post-meta">
+                  <time datetime="2026-06-25">2026年6月25日</time>
+                  <span class="post-category">映画</span>
+                </p>
+                <h3 class="post-title">今週観た映画メモ — 余韻が長く残る一本</h3>
+                <p class="post-excerpt">静かなカメラワークと、言葉よりも間合いで語る演出が印象的でした。ネタバレなしで、観たあとの感想だけを書いておきます。</p>
+              </div>
+            </a>
+          </li>
+          <li class="post-card">
+            <a href="#" class="post-card-link">
+              <div class="post-thumb" aria-hidden="true"></div>
+              <div class="post-body">
+                <p class="post-meta">
+                  <time datetime="2026-06-20">2026年6月20日</time>
+                  <span class="post-category">趣味</span>
+                </p>
+                <h3 class="post-title">週末の読書と、机の上の小さな整理</h3>
+                <p class="post-excerpt">積読リストから一冊だけ手に取って、ゆっくり読み進めた記録。本棚を少し整えたら、気持ちもすっきりしました。</p>
+              </div>
+            </a>
+          </li>
+          <li class="post-card">
+            <a href="#" class="post-card-link">
+              <div class="post-thumb" aria-hidden="true"></div>
+              <div class="post-body">
+                <p class="post-meta">
+                  <time datetime="2026-06-15">2026年6月15日</time>
+                  <span class="post-category">雑記</span>
+                </p>
+                <h3 class="post-title">六月のはじめ、ふと考えたこと</h3>
+                <p class="post-excerpt">季節の移ろいを感じるこの時期。大きなテーマではなく、日々の中でふと浮かんだことをそのまま書き留めてみました。</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <aside class="sidebar">
+        <section class="sidebar-block categories" aria-labelledby="categories-heading">
+          <h2 id="categories-heading">カテゴリ</h2>
+          <ul class="category-list">
+            <li><a href="#">日常の記録 <span class="count">12</span></a></li>
+            <li><a href="#">映画 <span class="count">8</span></a></li>
+            <li><a href="#">趣味 <span class="count">6</span></a></li>
+            <li><a href="#">雑記 <span class="count">10</span></a></li>
+          </ul>
+        </section>
+
+        <section class="sidebar-block profile" aria-labelledby="profile-heading">
+          <h2 id="profile-heading">プロフィール</h2>
+          <div class="profile-card">
+            <div class="profile-avatar" role="img" aria-label="プロフィール画像（プレースホルダー）"></div>
+            <p class="profile-name">あしたの夜明け</p>
+            <p class="profile-text">
+              日常の小さな出来事や、映画・読書・趣味の記録をゆっくり綴っています。
+              このサイトは HTML / CSS / JavaScript の学習も兼ねて、一から作り直しています。
+            </p>
+            <a href="#" class="profile-link">詳しいプロフィールを見る</a>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-brand">あしたの夜明け.com</p>
+      <p class="footer-copy">&copy; 2026 あしたの夜明け.com</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
