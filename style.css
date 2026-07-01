@@ -1086,7 +1086,8 @@ body.instagram-modal-open {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: clamp(1.5rem, 4vw, 2.25rem);
+  width: 100%;
+  padding: 2rem;
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: calc(var(--radius) * 2);
@@ -1094,6 +1095,7 @@ body.instagram-modal-open {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
+  container-type: inline-size;
 }
 
 .works-card:hover {
@@ -1105,6 +1107,7 @@ body.instagram-modal-open {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
 }
 
 .works-card-visual {
@@ -1116,7 +1119,7 @@ body.instagram-modal-open {
 
 .works-mockup-stage {
   position: relative;
-  width: min(100%, 680px);
+  width: 100%;
 }
 
 .works-mockup {
@@ -1198,15 +1201,15 @@ body.instagram-modal-open {
 .works-card-title {
   margin: 0 0 0.75rem;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+  font-size: 1.35rem;
   font-weight: 400;
   line-height: 1.4;
 }
 
 .works-card-desc {
-  max-width: 52em;
+  width: 100%;
   margin: 0 0 var(--space-sm);
-  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  font-size: 0.9375rem;
   line-height: 1.9;
   color: var(--color-text-muted);
 }
@@ -1238,7 +1241,7 @@ body.instagram-modal-open {
 
 .works-tag-list li {
   padding: 0.32rem 0.7rem;
-  font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+  font-size: 0.8125rem;
   line-height: 1.45;
   color: var(--color-text);
   background-color: var(--color-cream);
@@ -1254,13 +1257,19 @@ body.instagram-modal-open {
 .works-card-button {
   display: inline-block;
   padding: 0.7rem 2.25rem;
-  font-size: clamp(0.8125rem, 2vw, 0.875rem);
+  font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-white);
   background-color: var(--color-accent);
   border-radius: var(--radius);
   text-decoration: none;
   transition: background-color 0.2s ease;
+}
+
+@container (min-width: 640px) {
+  .works-card-title {
+    font-size: 1.5rem;
+  }
 }
 
 .works-card-button:hover {
