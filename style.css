@@ -380,6 +380,7 @@ main.page-main {
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   background-color: var(--color-cream);
+  container-type: inline-size;
 }
 
 .intro-sns-heading {
@@ -395,11 +396,38 @@ main.page-main {
   border-radius: var(--radius);
 }
 
-.intro-body .sns-list,
 .intro-sns .sns-list {
-  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
-  gap: 0;
+  gap: 1.75rem;
+}
+
+.intro-sns .sns-list li {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.intro-sns .sns-link {
+  width: auto;
+}
+
+.intro-sns .sns-icon {
+  width: 72px;
+  height: 72px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xs);
+}
+
+.intro-sns .sns-label {
+  display: block;
+  font-size: clamp(0.5625rem, 2.8cqi, 0.875rem);
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .intro-dialogue {
@@ -411,12 +439,14 @@ main.page-main {
 .intro-speech {
   position: relative;
   flex: 1;
+  min-width: 0;
   display: flex;
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: 2rem;
+  container-type: inline-size;
 }
 
 .intro-speech::before,
@@ -443,9 +473,18 @@ main.page-main {
 .intro-speech .intro-text {
   margin: 0;
   width: 100%;
+  min-width: 0;
   color: var(--color-text-muted);
-  line-height: 1.9;
+  font-size: clamp(0.5rem, calc((100cqi - 2.5rem) / 27), 1rem);
+  line-height: 1.75;
   text-align: center;
+}
+
+.intro-text-line {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 
 .intro-profile {
@@ -800,8 +839,30 @@ main.page-main {
     gap: 0.8rem;
   }
 
-  .sns-list {
-    gap: var(--space-md);
+  .intro-sns-card {
+    padding: var(--space-sm) var(--space-sm) var(--space-md);
+  }
+
+  .intro-sns .sns-list {
+    justify-content: space-between;
+    gap: clamp(0.25rem, 2cqi, 0.5rem);
+  }
+
+  .intro-sns .sns-list li {
+    flex: 1;
+  }
+
+  .intro-sns .sns-link {
+    width: 100%;
+  }
+
+  .intro-sns .sns-icon {
+    width: clamp(32px, calc((100cqi - 1.25rem) / 4), 56px);
+    height: clamp(32px, calc((100cqi - 1.25rem) / 4), 56px);
+  }
+
+  .intro-sns .sns-label {
+    font-size: clamp(0.5rem, 2.5cqi, 0.75rem);
   }
 
   .hero-text {
@@ -812,7 +873,18 @@ main.page-main {
 
   .intro-dialogue {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .intro-speech {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 1.5rem;
+  }
+
+  .intro-speech .intro-text {
+    font-size: clamp(0.5rem, calc((100cqi - 2rem) / 27), 0.875rem);
   }
 
   .intro-speech::before,
