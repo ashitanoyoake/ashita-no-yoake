@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="あしたの夜明け.com — 日常の記録、映画、趣味、雑記を綴る個人ブログ">
+  <meta name="description" content="あしたの夜明け.com — 日常の記録、イラスト、ブログ、実績紹介">
   <title>あしたの夜明け.com | 〜日常の記録〜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,13 +12,10 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
-      <div class="site-brand">
-        <p class="site-logo">
-          <a href="index.html">あしたの夜明け.com</a>
-        </p>
-        <p class="site-subtitle">〜日常の記録〜</p>
-      </div>
+    <div class="layout-inner header-inner">
+      <p class="site-logo">
+        <a href="index.html">あしたの夜明け.com</a>
+      </p>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
         <span class="nav-toggle-bar"></span>
@@ -29,119 +26,138 @@
       <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
         <ul class="nav-list">
           <li><a href="index.html" aria-current="page">ホーム</a></li>
-          <li><a href="#">ブログ</a></li>
-          <li><a href="#">映画</a></li>
-          <li><a href="#">趣味</a></li>
-          <li><a href="#">プロフィール</a></li>
+          <li><a href="illustration.html">イラスト</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="works.html">実績紹介</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero" aria-labelledby="hero-heading">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1 id="hero-heading">日常を、静かに残す場所</h1>
-          <p>
-            あしたの夜明け.com は、日々の出来事や映画の感想、趣味の記録、
-            ふと思ったことを綴る個人ブログです。派手さよりも読みやすさを大切にしています。
-          </p>
-        </div>
-        <div class="hero-visual" role="img" aria-label="サイトのメインビジュアル（プレースホルダー）">
-          <span class="placeholder-label">Main Visual</span>
+  <main class="page-main home-page">
+    <section class="hero" aria-label="サイト紹介">
+      <div class="content-inner">
+        <!-- メインビジュアル: images/main-visual.jpg を差し替えるだけで反映されます -->
+        <div class="hero-visual-wrap">
+          <img
+            src="images/main-visual.jpg"
+            alt="青空の下、丘の上で赤いマントをはおった少年が遠くを見つめているイラスト"
+            class="hero-visual"
+            width="1024"
+            height="682"
+          >
+          <div class="hero-text">
+            <h1 class="visually-hidden">あしたの夜明け.com</h1>
+            <p class="hero-description">
+              <span class="hero-description-line">あしたの夜明け.com は、日々の記録やイラスト、</span>
+              <span class="hero-description-line">ブログ、制作実績をゆっくり公開していく個人サイトです。</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="container content-layout">
-      <section class="latest-posts" aria-labelledby="latest-heading">
-        <h2 id="latest-heading">最新記事</h2>
-        <ul class="post-list">
-          <li class="post-card">
-            <a href="#" class="post-card-link">
-              <div class="post-thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <p class="post-meta">
-                  <time datetime="2026-06-28">2026年6月28日</time>
-                  <span class="post-category">日常の記録</span>
-                </p>
-                <h3 class="post-title">朝の散歩で見つけた小さな発見</h3>
-                <p class="post-excerpt">早朝の公園を歩いていたら、いつもと違う光の入り方に気づきました。特別な出来事ではないけれど、そういう瞬間を残しておきたい。</p>
-              </div>
-            </a>
-          </li>
-          <li class="post-card">
-            <a href="#" class="post-card-link">
-              <div class="post-thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <p class="post-meta">
-                  <time datetime="2026-06-25">2026年6月25日</time>
-                  <span class="post-category">映画</span>
-                </p>
-                <h3 class="post-title">今週観た映画メモ — 余韻が長く残る一本</h3>
-                <p class="post-excerpt">静かなカメラワークと、言葉よりも間合いで語る演出が印象的でした。ネタバレなしで、観たあとの感想だけを書いておきます。</p>
-              </div>
-            </a>
-          </li>
-          <li class="post-card">
-            <a href="#" class="post-card-link">
-              <div class="post-thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <p class="post-meta">
-                  <time datetime="2026-06-20">2026年6月20日</time>
-                  <span class="post-category">趣味</span>
-                </p>
-                <h3 class="post-title">週末の読書と、机の上の小さな整理</h3>
-                <p class="post-excerpt">積読リストから一冊だけ手に取って、ゆっくり読み進めた記録。本棚を少し整えたら、気持ちもすっきりしました。</p>
-              </div>
-            </a>
-          </li>
-          <li class="post-card">
-            <a href="#" class="post-card-link">
-              <div class="post-thumb" aria-hidden="true"></div>
-              <div class="post-body">
-                <p class="post-meta">
-                  <time datetime="2026-06-15">2026年6月15日</time>
-                  <span class="post-category">雑記</span>
-                </p>
-                <h3 class="post-title">六月のはじめ、ふと考えたこと</h3>
-                <p class="post-excerpt">季節の移ろいを感じるこの時期。大きなテーマではなく、日々の中でふと浮かんだことをそのまま書き留めてみました。</p>
-              </div>
-            </a>
-          </li>
-        </ul>
+    <div class="content-inner">
+      <section class="home-section intro" aria-labelledby="intro-heading">
+        <h2 id="intro-heading" class="section-heading">自己紹介</h2>
+        <div class="intro-card">
+          <div class="intro-dialogue">
+            <div class="intro-speech">
+              <p class="intro-text">
+                映画やイラスト、ガンプラ、多肉植物など、<br>
+                好きなことを楽しみながらAIやWeb制作にも挑戦しています。
+              </p>
+            </div>
+            <div class="intro-profile">
+              <!-- プロフィール画像: images/profile.jpg を差し替えるだけで反映されます -->
+              <img
+                src="images/profile.jpg"
+                alt="あしたの夜明けのプロフィール画像"
+                class="profile-avatar"
+                width="80"
+              >
+              <p class="profile-name">ネーム：あしたの夜明け</p>
+            </div>
+          </div>
+          <div class="intro-sns">
+            <div class="intro-sns-card">
+              <p class="intro-sns-heading">SNS</p>
+              <!-- SNSアイコン: images/sns/ 内の jpg を差し替えるだけで反映されます -->
+              <ul class="sns-list">
+                <li>
+                  <a href="#" class="sns-link">
+                    <img src="images/sns/bluesky.jpg" alt="" class="sns-icon" width="64" height="64">
+                    <span class="sns-label">Bluesky</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="sns-link">
+                    <img src="images/sns/instagram.jpg" alt="" class="sns-icon" width="64" height="64">
+                    <span class="sns-label">Instagram</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="sns-link">
+                    <img src="images/sns/filmarks.jpg" alt="" class="sns-icon" width="64" height="64">
+                    <span class="sns-label">Filmarks</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="sns-link">
+                    <img src="images/sns/x.jpg" alt="" class="sns-icon" width="64" height="64">
+                    <span class="sns-label">X（Twitter）</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <aside class="sidebar">
-        <section class="sidebar-block categories" aria-labelledby="categories-heading">
-          <h2 id="categories-heading">カテゴリ</h2>
-          <ul class="category-list">
-            <li><a href="#">日常の記録 <span class="count">12</span></a></li>
-            <li><a href="#">映画 <span class="count">8</span></a></li>
-            <li><a href="#">趣味 <span class="count">6</span></a></li>
-            <li><a href="#">雑記 <span class="count">10</span></a></li>
-          </ul>
-        </section>
-
-        <section class="sidebar-block profile" aria-labelledby="profile-heading">
-          <h2 id="profile-heading">プロフィール</h2>
-          <div class="profile-card">
-            <div class="profile-avatar" role="img" aria-label="プロフィール画像（プレースホルダー）"></div>
-            <p class="profile-name">あしたの夜明け</p>
-            <p class="profile-text">
-              日常の小さな出来事や、映画・読書・趣味の記録をゆっくり綴っています。
-              このサイトは HTML / CSS / JavaScript の学習も兼ねて、一から作り直しています。
-            </p>
-            <a href="#" class="profile-link">詳しいプロフィールを見る</a>
-          </div>
-        </section>
-      </aside>
+      <section class="home-section page-guide" aria-labelledby="guide-heading">
+        <h2 id="guide-heading" class="section-heading">ページ案内</h2>
+        <!-- ページ案内アイコン: images/guide/ 内の jpg を差し替えるだけで反映されます -->
+        <div class="guide-cards">
+          <article>
+            <a href="illustration.html" class="guide-card-link">
+              <img src="images/guide/illustration.jpg" alt="" class="guide-icon" width="128" height="128">
+              <h3 class="guide-card-title">イラスト</h3>
+              <p class="guide-card-text">Instagramに投稿した作品を掲載するページです。</p>
+              <span class="guide-card-more">見る</span>
+            </a>
+          </article>
+          <article>
+            <a href="blog.html" class="guide-card-link">
+              <img src="images/guide/blog.jpg" alt="" class="guide-icon" width="128" height="128">
+              <h3 class="guide-card-title">ブログ</h3>
+              <p class="guide-card-text">日常の記録や映画・趣味の雑記を綴ります。</p>
+              <span class="guide-card-more">見る</span>
+            </a>
+          </article>
+          <article>
+            <a href="works.html" class="guide-card-link">
+              <img src="images/guide/works.jpg" alt="" class="guide-icon" width="128" height="128">
+              <h3 class="guide-card-title">実績紹介</h3>
+              <p class="guide-card-text">制作したWebサイトなどを紹介します。</p>
+              <span class="guide-card-more">見る</span>
+            </a>
+          </article>
+          <article>
+            <a href="contact.html" class="guide-card-link">
+              <img src="images/guide/contact.jpg" alt="" class="guide-icon" width="128" height="128">
+              <h3 class="guide-card-title">お問い合わせ</h3>
+              <p class="guide-card-text">ご連絡・お仕事のご依頼はこちらから。</p>
+              <span class="guide-card-more">見る</span>
+            </a>
+          </article>
+        </div>
+      </section>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="layout-inner footer-inner">
       <p class="footer-brand">あしたの夜明け.com</p>
       <p class="footer-copy">&copy; 2026 あしたの夜明け.com</p>
     </div>

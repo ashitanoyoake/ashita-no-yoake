@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ブログ — あしたの夜明け.com">
+  <title>ブログ | あしたの夜明け.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Yusei+Magic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="layout-inner header-inner">
+      <p class="site-logo">
+        <a href="index.html">あしたの夜明け.com</a>
+      </p>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
+        <ul class="nav-list">
+          <li><a href="index.html">ホーム</a></li>
+          <li><a href="illustration.html">イラスト</a></li>
+          <li><a href="blog.html" aria-current="page">ブログ</a></li>
+          <li><a href="works.html">実績紹介</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="content-inner page-main">
+    <header class="page-header">
+      <div class="page-deco">
+        <img src="images/guide/blog.jpg" alt="" class="page-deco-image page-deco-image-sm" width="128" height="128">
+      </div>
+      <h1 class="page-title">ブログ</h1>
+      <p class="page-lead">日常の記録や映画・趣味の雑記を綴るページです。</p>
+    </header>
+
+    <ul class="blog-list">
+      <li>
+        <a href="#" class="blog-item-link">
+          <div class="blog-item-body">
+            <span class="blog-date">2026.06</span>
+            <span class="blog-title">朝の散歩で見つけた小さな発見</span>
+            <p class="blog-excerpt">早朝の公園を歩いていたら、いつもと違う光の入り方に気づきました。（仮）</p>
+          </div>
+          <span class="blog-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="blog-item-link">
+          <div class="blog-item-body">
+            <span class="blog-date">2026.05</span>
+            <span class="blog-title">今週観た映画メモ — 余韻が長く残る一本</span>
+            <p class="blog-excerpt">静かなカメラワークと、言葉よりも間合いで語る演出が印象的でした。（仮）</p>
+          </div>
+          <span class="blog-arrow">→</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="blog-item-link">
+          <div class="blog-item-body">
+            <span class="blog-date">2026.04</span>
+            <span class="blog-title">週末の読書と、机の上の小さな整理</span>
+            <p class="blog-excerpt">積読リストから一冊だけ手に取って、ゆっくり読み進めた記録。（仮）</p>
+          </div>
+          <span class="blog-arrow">→</span>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="layout-inner footer-inner">
+      <p class="footer-brand">あしたの夜明け.com</p>
+      <p class="footer-copy">&copy; 2026 あしたの夜明け.com</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
