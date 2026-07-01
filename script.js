@@ -33,3 +33,34 @@ if (pageTopButton) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 }
+
+/**
+ * ブログ：カテゴリ絞り込み
+ */
+const blogList = document.querySelector(".blog-list");
+const blogCategoryButtons = document.querySelectorAll(".blog-category-button");
+
+if (blogList && blogCategoryButtons.length > 0) {
+  const blogItems = blogList.querySelectorAll(".blog-item");
+
+  const filterBlogItems = (filter) => {
+    blogItems.forEach((item) => {
+      const category = item.dataset.category;
+      const isVisible = filter === "all" || category === filter;
+      item.classList.toggle("is-hidden", !isVisible);
+    });
+  };
+
+  blogCategoryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+      if (!filter) return;
+
+      blogCategoryButtons.forEach((btn) => {
+        btn.classList.remove("is-active");
+      });
+      button.classList.add("is-active");
+      filterBlogItems(filter);
+    });
+  });
+}

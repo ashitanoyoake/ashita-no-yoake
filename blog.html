@@ -44,38 +44,132 @@
       <p class="page-lead">日常の記録や映画・趣味の雑記を綴るページです。</p>
     </header>
 
-    <ul class="blog-list">
-      <li>
-        <a href="#" class="blog-item-link">
-          <div class="blog-item-body">
-            <span class="blog-date">2026.06</span>
-            <span class="blog-title">朝の散歩で見つけた小さな発見</span>
-            <p class="blog-excerpt">早朝の公園を歩いていたら、いつもと違う光の入り方に気づきました。（仮）</p>
-          </div>
-          <span class="blog-arrow">→</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="blog-item-link">
-          <div class="blog-item-body">
-            <span class="blog-date">2026.05</span>
-            <span class="blog-title">今週観た映画メモ — 余韻が長く残る一本</span>
-            <p class="blog-excerpt">静かなカメラワークと、言葉よりも間合いで語る演出が印象的でした。（仮）</p>
-          </div>
-          <span class="blog-arrow">→</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="blog-item-link">
-          <div class="blog-item-body">
-            <span class="blog-date">2026.04</span>
-            <span class="blog-title">週末の読書と、机の上の小さな整理</span>
-            <p class="blog-excerpt">積読リストから一冊だけ手に取って、ゆっくり読み進めた記録。（仮）</p>
-          </div>
-          <span class="blog-arrow">→</span>
-        </a>
-      </li>
-    </ul>
+    <div class="blog-layout">
+      <div class="blog-main">
+        <ul class="blog-list">
+          <li class="blog-item" data-category="diary">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.06.01</span>
+                <span class="blog-category">日記</span>
+                <span class="blog-title">朝の散歩で見つけた小さな発見</span>
+                <p class="blog-excerpt">早朝の公園を歩いていたら、いつもと違う光の入り方に気づきました。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+          <li class="blog-item" data-category="movie">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.05.18</span>
+                <span class="blog-category">映画</span>
+                <span class="blog-title">今週観た映画メモ — 余韻が長く残る一本</span>
+                <p class="blog-excerpt">静かなカメラワークと、言葉よりも間合いで語る演出が印象的でした。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+          <li class="blog-item" data-category="hobby">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.04.25</span>
+                <span class="blog-category">趣味</span>
+                <span class="blog-title">週末の読書と、机の上の小さな整理</span>
+                <p class="blog-excerpt">積読リストから一冊だけ手に取って、ゆっくり読み進めた記録。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+          <li class="blog-item" data-category="ai-web">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.03.12</span>
+                <span class="blog-category">AI・Web制作</span>
+                <span class="blog-title">JavaScriptの学習メモ — ページトップボタンを作った</span>
+                <p class="blog-excerpt">スクロール量に応じて表示を切り替える処理を、実際のサイトに組み込んでみました。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+          <li class="blog-item" data-category="hobby">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.02.08</span>
+                <span class="blog-category">趣味</span>
+                <span class="blog-title">週末のガンプラ制作ログ</span>
+                <p class="blog-excerpt">細かいパーツの塗装に時間をかけて、少しずつ形になっていく過程を記録。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+          <li class="blog-item" data-category="diary">
+            <a href="#" class="blog-item-link">
+              <div class="blog-item-body">
+                <span class="blog-date">2026.01.20</span>
+                <span class="blog-category">日記</span>
+                <span class="blog-title">多肉植物の水やり記録</span>
+                <p class="blog-excerpt">冬場の管理が難しい季節。日当たりと水のタイミングをメモしておく。（仮）</p>
+              </div>
+              <span class="blog-arrow">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <aside class="blog-sidebar" aria-label="ブログサイドバー">
+        <section class="blog-widget blog-widget-recent">
+          <h2 class="blog-widget-title">最近の記事</h2>
+          <ul class="blog-recent-list">
+            <li>
+              <a href="#" class="blog-recent-link">朝の散歩で見つけた小さな発見</a>
+              <time class="blog-recent-date" datetime="2026-06-01">2026.06.01</time>
+            </li>
+            <li>
+              <a href="#" class="blog-recent-link">今週観た映画メモ — 余韻が長く残る一本</a>
+              <time class="blog-recent-date" datetime="2026-05-18">2026.05.18</time>
+            </li>
+            <li>
+              <a href="#" class="blog-recent-link">JavaScriptの学習メモ — ページトップボタンを作った</a>
+              <time class="blog-recent-date" datetime="2026-03-12">2026.03.12</time>
+            </li>
+          </ul>
+        </section>
+
+        <section class="blog-widget blog-widget-categories">
+          <h2 class="blog-widget-title">カテゴリ</h2>
+          <ul class="blog-category-list">
+            <li>
+              <button type="button" class="blog-category-button is-active" data-filter="all">すべて</button>
+            </li>
+            <li>
+              <button type="button" class="blog-category-button" data-filter="movie">映画</button>
+            </li>
+            <li>
+              <button type="button" class="blog-category-button" data-filter="ai-web">AI・Web制作</button>
+            </li>
+            <li>
+              <button type="button" class="blog-category-button" data-filter="hobby">趣味</button>
+            </li>
+            <li>
+              <button type="button" class="blog-category-button" data-filter="diary">日記</button>
+            </li>
+          </ul>
+        </section>
+
+        <section class="blog-widget blog-widget-profile">
+          <h2 class="blog-widget-title">プロフィール</h2>
+          <img
+            src="images/profile.jpg"
+            alt="あしたの夜明けのプロフィール画像"
+            class="blog-profile-avatar"
+            width="56"
+            height="56"
+          >
+          <p class="blog-profile-text">映画やイラスト、ガンプラ、多肉植物など、好きなことを楽しみながらAIやWeb制作にも挑戦しています。</p>
+          <a href="index.html#intro-heading" class="blog-profile-link">自己紹介を見る →</a>
+        </section>
+      </aside>
+    </div>
   </main>
 
   <footer class="site-footer">
