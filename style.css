@@ -158,34 +158,36 @@ main.page-main {
 
 .site-nav {
   margin-left: auto;
+  margin-right: 0.75rem;
 }
 
 .nav-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: var(--space-xs) var(--space-sm);
+  gap: var(--space-xs) 0.65rem;
 }
 
 .nav-list a {
   display: inline-block;
-  padding: 0.4rem 0.5rem;
-  font-size: 1.0625rem;
+  padding: 0.35rem 0.35rem 0.25rem;
+  font-size: 1rem;
   color: var(--color-text);
-  border-radius: var(--radius);
+  border-bottom: 2px solid transparent;
   text-decoration: none;
   letter-spacing: -0.05em;
-  transition: background-color 0.2s;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.nav-list a:hover,
-.nav-list a[aria-current="page"] {
-  background-color: rgba(255, 255, 255, 0.6);
+.nav-list a:hover {
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 .nav-list a[aria-current="page"] {
   font-weight: 500;
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
 }
 
 /* ========================================
@@ -1399,6 +1401,11 @@ body.instagram-modal-open {
     display: block;
     padding: 0.75rem;
     border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-list a[aria-current="page"] {
+    color: var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
   }
 
   .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
