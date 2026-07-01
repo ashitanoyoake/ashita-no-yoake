@@ -1255,6 +1255,7 @@ body.instagram-modal-open {
 }
 
 .works-card-button {
+  align-self: center;
   display: inline-block;
   padding: 0.7rem 2.25rem;
   font-size: 0.875rem;
