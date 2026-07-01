@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="実績紹介 — あしたの夜明け.com">
-  <title>実績紹介 | あしたの夜明け.com</title>
+  <meta name="description" content="イラスト作品一覧 — あしたの夜明け.com">
+  <title>イラスト | あしたの夜明け.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Yusei+Magic&display=swap" rel="stylesheet">
@@ -26,9 +26,9 @@
       <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
         <ul class="nav-list">
           <li><a href="index.html">ホーム</a></li>
-          <li><a href="instagram.html">イラスト</a></li>
+          <li><a href="instagram.html" aria-current="page">イラスト</a></li>
           <li><a href="blog.html">ブログ</a></li>
-          <li><a href="works.html" aria-current="page">実績紹介</a></li>
+          <li><a href="works.html">実績紹介</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
@@ -38,38 +38,20 @@
   <main class="content-inner page-main">
     <header class="page-header">
       <div class="page-deco">
-        <img src="images/guide/works.jpg" alt="" class="page-deco-image" width="160" height="160">
+        <img src="images/guide/illustration.jpg" alt="" class="page-deco-image page-deco-image-sm" width="128" height="128">
       </div>
-      <h1 class="page-title">実績紹介</h1>
-      <p class="page-lead">制作したWebサイトなどを紹介します。</p>
+      <h1 class="page-title">イラスト</h1>
+      <p class="page-lead">Instagramに投稿した作品を掲載するページです。</p>
     </header>
 
-    <div class="works-list">
-      <article class="works-item">
-        <div class="placeholder work-placeholder">サイト画像予定</div>
-        <h3>あしたの夜明け.com</h3>
-        <p class="works-year">2026年</p>
-        <p>HTML / CSS / JavaScript で制作中の個人サイトです。</p>
-      </article>
-      <article class="works-item">
-        <div class="placeholder work-placeholder">サイト画像予定</div>
-        <h3>おつまみ日記！</h3>
-        <p class="works-year">2026年</p>
-        <p>学習用に制作したイラストレーター向けポートフォリオサイトです。</p>
-      </article>
-      <article class="works-item">
-        <div class="placeholder work-placeholder">アプリ画像予定</div>
-        <h3>学習用アプリ（仮）</h3>
-        <p class="works-year">2025年</p>
-        <p>プログラミング学習の一環で制作したアプリの予定地です。</p>
-      </article>
-      <article class="works-item">
-        <div class="placeholder work-placeholder">サイト画像予定</div>
-        <h3>静的サイトテンプレート（仮）</h3>
-        <p class="works-year">2025年</p>
-        <p>シンプルな構成のWebサイトテンプレートを試作しました。</p>
-      </article>
+    <div class="instagram-gallery-wrap" data-instagram-gallery>
+      <div class="instagram-gallery" aria-live="polite" hidden></div>
+      <p class="instagram-gallery-message" hidden>現在投稿を読み込めません。</p>
     </div>
+
+    <p class="section-link">
+      <a href="https://www.instagram.com/ashitanoyoakedotcom/" target="_blank" rel="noopener noreferrer">Instagramアカウントを見る→</a>
+    </p>
   </main>
 
   <footer class="site-footer">
@@ -79,8 +61,23 @@
     </div>
   </footer>
 
+  <div class="instagram-modal" role="dialog" aria-modal="true" aria-label="Instagram投稿の拡大表示" hidden>
+    <div class="instagram-modal-inner">
+      <button type="button" class="instagram-modal-close" aria-label="閉じる">×</button>
+      <button type="button" class="instagram-modal-prev" aria-label="前の投稿">←</button>
+      <button type="button" class="instagram-modal-next" aria-label="次の投稿">→</button>
+      <figure class="instagram-modal-figure">
+        <img class="instagram-modal-image" src="" alt="">
+        <figcaption class="instagram-modal-caption">
+          <a class="instagram-modal-link" href="#" target="_blank" rel="noopener noreferrer">Instagramの投稿を見る</a>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
   <button class="page-top-button" type="button" aria-label="ページトップへ戻る">↑ Top</button>
 
   <script src="script.js"></script>
+  <script src="js/instagram-gallery.js"></script>
 </body>
 </html>
