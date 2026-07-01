@@ -12,7 +12,8 @@
 
   if (!gridEl || !messageEl) return;
 
-  const DATA_URL = "data/instagram.json";
+  const DATA_URL = new URL("data/instagram.json", window.location.href).href;
+  const LOADING_MESSAGE = "読み込み中...";
   const EMPTY_MESSAGE = "現在投稿を読み込めません。";
 
   /** @type {Array<{id: string, media_url: string, permalink: string, media_type: string, thumbnail_url: string | null, timestamp: string}>} */
@@ -51,16 +52,16 @@
     return `Instagram投稿（${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日）`;
   }
 
-  function showMessage() {
+  function showMessage(text) {
     gridEl.innerHTML = "";
-    gridEl.hidden = true;
-    messageEl.textContent = EMPTY_MESSAGE;
-    messageEl.hidden = false;
+    gridEl.setAttribute("hidden", "");
+    messageEl.textContent = text || EMPTY_MESSAGE;
+    messageEl.removeAttribute("hidden");
   }
 
   function showGallery() {
-    messageEl.hidden = true;
-    gridEl.hidden = false;
+    messageEl.setAttribute("hidden", "");
+    gridEl.removeAttribute("hidden");
   }
 
   /**
@@ -80,6 +81,7 @@
       img.src = post.media_url;
       img.alt = formatDateForAlt(post.timestamp);
       img.loading = "lazy";
+      img.referrerPolicy = "no-referrer";
       img.width = 400;
       img.height = 400;
 
@@ -222,17 +224,18 @@
   async function init() {
     bindGalleryEvents();
     bindModalEvents();
+    showMessage(LOADING_MESSAGE);
 
     try {
       const response = await fetch(DATA_URL, { cache: "no-cache" });
       if (!response.ok) {
-        showMessage();
+        showMessage(EMPTY_MESSAGE);
         return;
       }
 
       const data = await response.json();
       if (!Array.isArray(data.posts) || data.posts.length === 0) {
-        showMessage();
+        showMessage(EMPTY_MESSAGE);
         return;
       }
 
@@ -241,13 +244,13 @@
       );
 
       if (posts.length === 0) {
-        showMessage();
+        showMessage(EMPTY_MESSAGE);
         return;
       }
 
       renderGallery(posts.slice(0, 9));
     } catch {
-      showMessage();
+      showMessage(EMPTY_MESSAGE);
     }
   }
 

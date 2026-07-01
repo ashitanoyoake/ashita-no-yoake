@@ -164,12 +164,13 @@ main.page-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: var(--space-xs) var(--space-md);
+  gap: var(--space-xs) var(--space-sm);
 }
 
 .nav-list a {
   display: inline-block;
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 1.0625rem;
   color: var(--color-text);
   border-radius: var(--radius);
   text-decoration: none;
@@ -294,7 +295,7 @@ main.page-main {
   position: relative;
   overflow: hidden;
   border-radius: var(--radius);
-  aspect-ratio: 1024 / 455;
+  aspect-ratio: 1024 / 400;
   container-type: inline-size;
 }
 
@@ -673,6 +674,14 @@ main.page-main {
   .instagram-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.instagram-gallery[hidden] {
+  display: none !important;
+}
+
+.instagram-gallery-message[hidden] {
+  display: none !important;
 }
 
 .instagram-gallery-message {
@@ -1074,11 +1083,10 @@ body.instagram-modal-open {
 }
 
 .works-card {
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: clamp(1.75rem, 4vw, 3rem);
-  align-items: center;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: calc(var(--radius) * 2);
@@ -1093,21 +1101,38 @@ body.instagram-modal-open {
   box-shadow: 0 8px 32px rgba(139, 115, 85, 0.12);
 }
 
+.works-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .works-card-visual {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+
+.works-mockup-stage {
   position: relative;
-  min-height: 220px;
-  padding: var(--space-sm) var(--space-sm) var(--space-lg);
+  width: min(100%, 680px);
 }
 
 .works-mockup {
   position: relative;
 }
 
+.works-mockup-pc {
+  width: 100%;
+  margin-inline: auto;
+}
+
 .works-mockup-frame {
   overflow: hidden;
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 28px rgba(139, 115, 85, 0.1);
 }
 
 .works-mockup-pc .works-mockup-frame {
@@ -1157,48 +1182,10 @@ body.instagram-modal-open {
   object-position: center bottom;
 }
 
-.works-mockup-sp {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 34%;
-  max-width: 118px;
-}
-
-.works-mockup-sp .works-mockup-frame {
-  border-radius: 1rem;
-  padding: 0.35rem 0.35rem 0.5rem;
-  background: linear-gradient(160deg, #f0ebe0 0%, #e8e0d0 100%);
-}
-
-.works-mockup-notch {
-  width: 28%;
-  height: 0.2rem;
-  margin: 0.15rem auto 0.35rem;
-  border-radius: 999px;
-  background-color: rgba(0, 0, 0, 0.12);
-}
-
-.works-mockup-sp .works-mockup-screen {
-  border-radius: 0.65rem;
-  aspect-ratio: 9 / 16;
-}
-
-.works-mockup-sp .works-mockup-image {
-  object-position: center center;
-}
-
-.works-card-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-block: var(--space-xs);
-}
-
 .works-badge {
   display: inline-block;
-  margin-bottom: var(--space-sm);
-  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.85rem;
+  padding: 0.28rem 0.8rem;
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -1209,17 +1196,18 @@ body.instagram-modal-open {
 }
 
 .works-card-title {
-  margin: 0 0 var(--space-sm);
+  margin: 0 0 0.75rem;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
   font-weight: 400;
   line-height: 1.4;
 }
 
 .works-card-desc {
-  margin: 0 0 var(--space-md);
-  font-size: 0.9375rem;
-  line-height: 1.85;
+  max-width: 52em;
+  margin: 0 0 var(--space-sm);
+  font-size: clamp(0.875rem, 2vw, 0.9375rem);
+  line-height: 1.9;
   color: var(--color-text-muted);
 }
 
@@ -1232,7 +1220,7 @@ body.instagram-modal-open {
 }
 
 .works-meta-label {
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.55rem;
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -1242,16 +1230,16 @@ body.instagram-modal-open {
 .works-tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.45rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .works-tag-list li {
-  padding: 0.3rem 0.65rem;
-  font-size: 0.8125rem;
-  line-height: 1.4;
+  padding: 0.32rem 0.7rem;
+  font-size: clamp(0.75rem, 1.8vw, 0.8125rem);
+  line-height: 1.45;
   color: var(--color-text);
   background-color: var(--color-cream);
   border: 1px solid var(--color-border);
@@ -1265,8 +1253,8 @@ body.instagram-modal-open {
 
 .works-card-button {
   display: inline-block;
-  padding: 0.65rem 2rem;
-  font-size: 0.875rem;
+  padding: 0.7rem 2.25rem;
+  font-size: clamp(0.8125rem, 2vw, 0.875rem);
   font-weight: 500;
   color: var(--color-white);
   background-color: var(--color-accent);
@@ -1462,23 +1450,15 @@ body.instagram-modal-open {
   }
 
   .works-card {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
     padding: var(--space-md);
   }
 
   .works-card-visual {
-    min-height: 180px;
-    padding: var(--space-xs) var(--space-xs) var(--space-md);
+    margin: var(--space-xs) 0 var(--space-md);
   }
 
-  .works-mockup-sp {
-    width: 32%;
-    max-width: 100px;
-  }
-
-  .works-card-body {
-    padding-block: 0;
+  .works-mockup-stage {
+    width: 100%;
   }
 
   .works-meta {
