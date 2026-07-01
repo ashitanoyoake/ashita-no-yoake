@@ -14,3 +14,22 @@ if (navToggle && siteNav) {
     );
   });
 }
+
+/**
+ * ページトップへ戻るボタン
+ */
+const pageTopButton = document.querySelector(".page-top-button");
+const SCROLL_THRESHOLD = 300;
+
+if (pageTopButton) {
+  const updatePageTopButton = () => {
+    pageTopButton.classList.toggle("is-visible", window.scrollY > SCROLL_THRESHOLD);
+  };
+
+  window.addEventListener("scroll", updatePageTopButton, { passive: true });
+  updatePageTopButton();
+
+  pageTopButton.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}

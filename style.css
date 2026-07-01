@@ -512,6 +512,53 @@ main.page-main {
   margin: 0;
 }
 
+/* ========================================
+   ページトップへ戻るボタン
+   ======================================== */
+.page-top-button {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 100;
+  padding: 0.6rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.page-top-button.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.page-top-button:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.page-top-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 /* SNS */
 .sns-list {
   display: flex;
@@ -910,5 +957,12 @@ main.page-main {
   .intro-profile {
     margin-right: 0;
     padding-top: var(--space-xs);
+  }
+
+  .page-top-button {
+    right: var(--space-sm);
+    bottom: var(--space-sm);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
   }
 }
