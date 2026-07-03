@@ -22,34 +22,6 @@ const FIELDS = [
   "children{media_type,media_url,thumbnail_url}",
 ].join(",");
 
-// TODO: 調査完了後に削除 — 開始
-const INSTAGRAM_DEBUG = process.env.INSTAGRAM_DEBUG === "1";
-
-/**
- * APIレスポンスの確認用ログ（INSTAGRAM_DEBUG=1 のときのみ出力）。
- * @param {Record<string, unknown>[]} items
- * @param {number} normalizedCount
- */
-function logApiResponseDebug(items, normalizedCount) {
-  if (!INSTAGRAM_DEBUG) {
-    return;
-  }
-
-  console.log(`[debug] APIから返ってきた投稿件数: ${items.length}`);
-  items.forEach((item, index) => {
-    console.log(`[debug] 投稿 ${index + 1}:`, {
-      id: item.id,
-      media_type: item.media_type,
-      timestamp: item.timestamp,
-      permalink: item.permalink ? "あり" : "なし",
-      media_url: item.media_url ? "あり" : "なし",
-      thumbnail_url: item.thumbnail_url ? "あり" : "なし",
-    });
-  });
-  console.log(`[debug] normalizePost 後に残った投稿件数: ${normalizedCount}`);
-}
-// TODO: 調査完了後に削除 — 終了
-
 /**
  * 一覧表示用の画像URLを決定する（カルーセルは1枚目、動画はサムネイル優先）。
  * @param {Record<string, unknown>} item
@@ -126,10 +98,7 @@ async function fetchInstagramPosts(accessToken, userId) {
   }
 
   const items = Array.isArray(data.data) ? data.data : [];
-  const posts = items.map(normalizePost).filter(Boolean).slice(0, POST_LIMIT);
-  logApiResponseDebug(items, posts.length);
-
-  return posts;
+  return items.map(normalizePost).filter(Boolean).slice(0, POST_LIMIT);
 }
 
 async function main() {

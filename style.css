@@ -1489,14 +1489,14 @@ body.instagram-modal-open {
   }
 
   .intro-sns .sns-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md);
-    justify-items: stretch;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: clamp(0.25rem, 2cqi, 0.5rem);
   }
 
   .intro-sns .sns-list li {
-    flex: unset;
+    flex: 1;
     min-width: 0;
   }
 
@@ -1506,15 +1506,15 @@ body.instagram-modal-open {
   }
 
   .intro-sns .sns-icon {
-    width: 56px;
-    height: 56px;
+    width: clamp(40px, calc((100cqi - 1.25rem) / 4), 56px);
+    height: clamp(40px, calc((100cqi - 1.25rem) / 4), 56px);
   }
 
   .intro-sns .sns-label {
     font-size: 0.875rem;
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-text {
