@@ -290,7 +290,7 @@ main.page-main {
    ======================================== */
 .hero {
   background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-white) 100%);
-  padding-block: var(--space-lg);
+  padding-block: var(--space-lg) var(--space-md);
 }
 
 .hero-visual-wrap {
@@ -299,6 +299,7 @@ main.page-main {
   border-radius: var(--radius);
   aspect-ratio: 1024 / 400;
   container-type: inline-size;
+  box-shadow: var(--shadow);
 }
 
 .hero-visual {
@@ -314,7 +315,7 @@ main.page-main {
   left: var(--space-md);
   top: var(--space-md);
   z-index: 1;
-  max-width: calc(100% - var(--space-md) * 2);
+  max-width: min(32em, calc(100% - var(--space-md) * 2));
   text-align: left;
 }
 
@@ -322,7 +323,7 @@ main.page-main {
   margin: 0;
   color: var(--color-white);
   font-size: clamp(0.875rem, 2.85cqi, 1.25rem);
-  line-height: 1.75;
+  line-height: 1.8;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
@@ -345,6 +346,10 @@ main.page-main {
 /* ========================================
    ホーム：セクション共通
    ======================================== */
+.page-main.home-page > .content-inner {
+  padding-top: var(--space-lg);
+}
+
 .home-section {
   margin-bottom: var(--space-xl);
 }
@@ -367,10 +372,10 @@ main.page-main {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  padding: var(--space-md);
-  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border: none;
   border-radius: var(--radius);
-  background: var(--color-white);
+  background-color: var(--color-cream);
 }
 
 .intro-sns {
@@ -379,9 +384,9 @@ main.page-main {
 
 .intro-sns-card {
   padding: var(--space-md) var(--space-md) var(--space-lg);
-  border: 1px solid var(--color-border);
+  border: none;
   border-radius: var(--radius);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   container-type: inline-size;
 }
 
@@ -446,7 +451,7 @@ main.page-main {
   align-items: center;
   padding: var(--space-md) var(--space-lg);
   background-color: var(--color-white);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-cream-dark);
   border-radius: 2rem;
   container-type: inline-size;
 }
@@ -463,7 +468,7 @@ main.page-main {
 .intro-speech::before {
   right: -13px;
   border-width: 11px 0 11px 13px;
-  border-color: transparent transparent transparent var(--color-border);
+  border-color: transparent transparent transparent var(--color-cream-dark);
 }
 
 .intro-speech::after {
@@ -1551,7 +1556,7 @@ body.instagram-modal-open {
 
   .intro-speech::before {
     bottom: -14px;
-    border-color: var(--color-border) transparent transparent transparent;
+    border-color: var(--color-cream-dark) transparent transparent transparent;
   }
 
   .intro-speech::after {
@@ -1562,6 +1567,10 @@ body.instagram-modal-open {
   .intro-profile {
     margin-right: 0;
     padding-top: var(--space-xs);
+  }
+
+  .intro-card {
+    padding: var(--space-md);
   }
 
   .page-top-button {
