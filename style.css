@@ -321,14 +321,13 @@ main.page-main {
 .hero-description {
   margin: 0;
   color: var(--color-white);
-  font-size: clamp(0.5625rem, 2.85cqi, 1.25rem);
+  font-size: clamp(0.875rem, 2.85cqi, 1.25rem);
   line-height: 1.75;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 .hero-description-line {
   display: block;
-  white-space: nowrap;
 }
 
 .visually-hidden {
@@ -478,16 +477,13 @@ main.page-main {
   width: 100%;
   min-width: 0;
   color: var(--color-text-muted);
-  font-size: clamp(0.5rem, calc((100cqi - 2.5rem) / 27), 1rem);
+  font-size: clamp(0.875rem, calc((100cqi - 2.5rem) / 27), 1rem);
   line-height: 1.75;
   text-align: center;
 }
 
 .intro-text-line {
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
 }
 
 .intro-profile {
@@ -1489,29 +1485,36 @@ body.instagram-modal-open {
   }
 
   .intro-sns-card {
-    padding: var(--space-sm) var(--space-sm) var(--space-md);
+    padding: var(--space-md);
   }
 
   .intro-sns .sns-list {
-    justify-content: space-between;
-    gap: clamp(0.25rem, 2cqi, 0.5rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    justify-items: stretch;
   }
 
   .intro-sns .sns-list li {
-    flex: 1;
+    flex: unset;
+    min-width: 0;
   }
 
   .intro-sns .sns-link {
     width: 100%;
+    padding: var(--space-sm) var(--space-xs);
   }
 
   .intro-sns .sns-icon {
-    width: clamp(32px, calc((100cqi - 1.25rem) / 4), 56px);
-    height: clamp(32px, calc((100cqi - 1.25rem) / 4), 56px);
+    width: 56px;
+    height: 56px;
   }
 
   .intro-sns .sns-label {
-    font-size: clamp(0.5rem, 2.5cqi, 0.75rem);
+    font-size: 0.875rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .hero-text {
@@ -1528,12 +1531,12 @@ body.instagram-modal-open {
 
   .intro-speech {
     width: 100%;
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-md);
     border-radius: 1.5rem;
   }
 
   .intro-speech .intro-text {
-    font-size: clamp(0.5rem, calc((100cqi - 2rem) / 27), 0.875rem);
+    font-size: 0.875rem;
   }
 
   .intro-speech::before,
