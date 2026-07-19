@@ -101,7 +101,7 @@ main.page-main {
 }
 
 .page-main:not(.home-page) {
-  padding-top: 2rem;
+  padding-top: 2.5rem;
 }
 
 /* ========================================
@@ -209,38 +209,47 @@ main.page-main {
    下層ページ：ページヘッダー
    ======================================== */
 .page-header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
 }
 
 .page-deco {
-  margin-block: 1.5rem;
+  margin: 0 0 1.25rem;
 }
 
 .page-title {
   display: inline-block;
-  margin: 0 0 var(--space-sm);
-  padding-bottom: 0.3rem;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.35rem;
   border-bottom: 2px solid var(--color-accent);
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: 1.2rem;
   font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-text);
 }
 
 .page-lead,
 .section-lead {
-  margin: 0 0 1.5rem;
-  font-size: 0.9rem;
+  margin: 0 auto;
+  max-width: 36em;
+  font-size: 0.875rem;
+  line-height: 1.9;
   color: var(--color-text-muted);
 }
 
 .section-link {
-  margin-top: 1.2rem;
+  margin-top: var(--space-md);
   font-size: 0.875rem;
 }
 
 .section-link a {
   color: var(--color-accent);
+}
+
+.section-link a:hover {
+  color: var(--color-accent);
+  text-decoration: none;
 }
 
 /* ========================================
@@ -678,13 +687,13 @@ main.page-main {
 
 /* Instagram ギャラリー */
 .instagram-gallery-wrap {
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
 }
 
 .instagram-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 @media (max-width: 900px) {
@@ -706,7 +715,7 @@ main.page-main {
   padding: var(--space-lg);
   text-align: center;
   color: var(--color-text-muted);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
 }
@@ -719,18 +728,13 @@ main.page-main {
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   cursor: pointer;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .instagram-gallery-item:hover {
   border-color: var(--color-accent);
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
 }
 
 .instagram-gallery-item:focus-visible {
@@ -879,6 +883,7 @@ body.instagram-modal-open {
   column-gap: var(--space-xl);
   row-gap: var(--space-lg);
   align-items: start;
+  margin-top: 0;
 }
 
 .blog-main {
@@ -908,9 +913,10 @@ body.instagram-modal-open {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding: 1.2rem 0;
+  padding: 1.25rem 0;
   color: var(--color-text);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .blog-item-link:hover {
@@ -936,15 +942,15 @@ body.instagram-modal-open {
   font-size: 0.75rem;
   line-height: 1.4;
   color: var(--color-accent);
-  background-color: var(--color-cream);
+  background-color: var(--color-accent-light);
   border: 1px solid var(--color-border);
   border-radius: 999px;
 }
 
 .blog-title {
   display: block;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 400;
   margin-bottom: 0.3rem;
 }
 
@@ -964,7 +970,7 @@ body.instagram-modal-open {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  margin-top: var(--space-xl);
+  margin-top: 0;
   margin-inline-start: var(--space-sm);
   justify-self: end;
 }
@@ -973,16 +979,17 @@ body.instagram-modal-open {
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
 }
 
 .blog-widget-title {
   margin: 0 0 var(--space-sm);
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.5rem;
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 400;
   letter-spacing: 0.08em;
-  border-bottom: 2px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .blog-category-list {
@@ -1104,20 +1111,16 @@ body.instagram-modal-open {
   flex-direction: column;
   overflow: hidden;
   width: 100%;
-  padding: 2rem;
+  padding: var(--space-lg);
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: calc(var(--radius) * 2);
-  box-shadow: 0 4px 24px rgba(139, 115, 85, 0.08);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease;
   container-type: inline-size;
 }
 
 .works-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(139, 115, 85, 0.12);
+  border-color: var(--color-accent);
 }
 
 .works-card-body {
@@ -1152,7 +1155,6 @@ body.instagram-modal-open {
   overflow: hidden;
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
-  box-shadow: 0 8px 28px rgba(139, 115, 85, 0.1);
 }
 
 .works-mockup-pc .works-mockup-frame {
@@ -1207,10 +1209,10 @@ body.instagram-modal-open {
   margin-bottom: 0.85rem;
   padding: 0.28rem 0.8rem;
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.06em;
   color: var(--color-accent);
-  background-color: var(--color-cream);
+  background-color: var(--color-accent-light);
   border: 1px solid var(--color-border);
   border-radius: 999px;
 }
@@ -1218,9 +1220,10 @@ body.instagram-modal-open {
 .works-card-title {
   margin: 0 0 0.75rem;
   font-family: var(--font-display);
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
 }
 
 .works-card-desc {
@@ -1247,6 +1250,13 @@ body.instagram-modal-open {
   color: var(--color-text);
 }
 
+.works-meta-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+}
+
 .works-tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -1261,7 +1271,7 @@ body.instagram-modal-open {
   font-size: 0.8125rem;
   line-height: 1.45;
   color: var(--color-text);
-  background-color: var(--color-cream);
+  background-color: var(--color-accent-light);
   border: 1px solid var(--color-border);
   border-radius: 999px;
 }
@@ -1274,19 +1284,19 @@ body.instagram-modal-open {
 .works-card-button {
   align-self: center;
   display: inline-block;
-  padding: 0.7rem 2.25rem;
+  padding: 0.65rem 2rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-white);
   background-color: var(--color-accent);
-  border-radius: var(--radius);
+  border-radius: 2rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
 }
 
 @container (min-width: 640px) {
   .works-card-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -1302,7 +1312,7 @@ body.instagram-modal-open {
   font-size: 0.875rem;
   line-height: 1.9;
   color: var(--color-text-muted);
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   border: 1px dashed var(--color-border);
   border-radius: var(--radius);
 }
@@ -1311,7 +1321,7 @@ body.instagram-modal-open {
    お問い合わせフォーム
    ======================================== */
 .contact-form p {
-  margin: 0 0 1.8rem;
+  margin: 0 0 2rem;
 }
 
 .contact-form label {
