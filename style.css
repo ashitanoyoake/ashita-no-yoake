@@ -5,13 +5,14 @@
   --color-cream: #f8f4e6;
   --color-cream-dark: #ebe4cf;
   --color-white: #ffffff;
-  --color-text: #333333;
-  --color-text-muted: #666666;
-  --color-border: #ddd5c4;
-  --color-accent: #8b7355;
+  --color-text: #3a3a3a;
+  --color-text-muted: #888888;
+  --color-border: #f0f0f0;
+  --color-accent: #c8874a;
+  --color-accent-light: #f5ebe0;
 
-  --font-display: "Yusei Magic", sans-serif;
-  --font-body: "Noto Sans JP", sans-serif;
+  --font-display: "Zen Maru Gothic", sans-serif;
+  --font-body: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
 
   --layout-max: 1080px;   /* ヘッダー・フッター */
   --content-max: 900px;    /* メインコンテンツ */
@@ -38,7 +39,9 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.8;
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
   color: var(--color-text);
   background-color: var(--color-white);
 }
@@ -50,12 +53,12 @@ img {
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--color-accent);
 }
 
 h1, h2, h3 {
