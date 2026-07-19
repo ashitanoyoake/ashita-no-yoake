@@ -108,7 +108,7 @@ main.page-main {
    ヘッダー
    ======================================== */
 .site-header {
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -117,23 +117,34 @@ main.page-main {
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-sm);
-  padding-block: var(--space-md);
+  padding-block: 1.2rem 1rem;
 }
 
 .site-logo {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-size: 1.05rem;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
 }
 
 .site-logo a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   color: var(--color-text);
   text-decoration: none;
 }
 
 .site-logo a:hover {
-  opacity: 0.75;
+  color: var(--color-text);
   text-decoration: none;
+}
+
+.site-logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
 .nav-toggle {
@@ -144,9 +155,9 @@ main.page-main {
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-white);
+  border: none;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
 }
 
@@ -173,12 +184,13 @@ main.page-main {
 
 .nav-list a {
   display: inline-block;
-  padding: 0.35rem 0.35rem 0.25rem;
-  font-size: 1rem;
-  color: var(--color-text);
+  padding: 0.3rem 0.2rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
   border-bottom: 2px solid transparent;
   text-decoration: none;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.06em;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -188,7 +200,7 @@ main.page-main {
 }
 
 .nav-list a[aria-current="page"] {
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-accent);
   border-bottom-color: var(--color-accent);
 }
@@ -1351,23 +1363,27 @@ body.instagram-modal-open {
    フッター
    ======================================== */
 .site-footer {
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
   border-top: 1px solid var(--color-border);
 }
 
 .footer-inner {
-  padding-block: var(--space-md);
+  padding-block: 2.5rem 3.5rem;
   text-align: center;
 }
 
 .footer-brand {
   font-family: var(--font-display);
-  margin-bottom: var(--space-xs);
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: #aaaaaa;
 }
 
 .footer-copy {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  color: #cccccc;
+  letter-spacing: 0.08em;
   margin: 0;
 }
 
