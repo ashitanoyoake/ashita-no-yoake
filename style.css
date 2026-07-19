@@ -308,12 +308,32 @@ main.page-main {
   padding-block: var(--space-lg) var(--space-md);
 }
 
+.home-hero {
+  margin-bottom: var(--space-lg);
+  padding: 0;
+  background: none;
+}
+
+.home-hero .hero-visual-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: none;
+  aspect-ratio: 1024 / 360;
+}
+
+.home-hero .hero-visual {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
 .hero-visual-wrap {
-  position: relative;
   overflow: hidden;
   border-radius: var(--radius);
   aspect-ratio: 1024 / 400;
-  container-type: inline-size;
   box-shadow: var(--shadow);
 }
 
@@ -323,27 +343,6 @@ main.page-main {
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
-}
-
-.hero-text {
-  position: absolute;
-  left: var(--space-md);
-  top: var(--space-md);
-  z-index: 1;
-  max-width: min(32em, calc(100% - var(--space-md) * 2));
-  text-align: left;
-}
-
-.hero-description {
-  margin: 0;
-  color: var(--color-white);
-  font-size: clamp(0.875rem, 2.85cqi, 1.25rem);
-  line-height: 1.8;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
-}
-
-.hero-description-line {
-  display: block;
 }
 
 .visually-hidden {
@@ -1539,12 +1538,6 @@ body.instagram-modal-open {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .hero-text {
-    left: var(--space-sm);
-    top: var(--space-sm);
-    max-width: calc(100% - var(--space-sm) * 2);
   }
 
   .intro-dialogue {
