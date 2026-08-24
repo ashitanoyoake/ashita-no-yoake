@@ -432,12 +432,12 @@ main.page-main {
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 1.75rem;
+  gap: 3rem;
 }
 
 .intro-sns .sns-list li {
   flex: 0 0 auto;
-  min-width: 0;
+  min-width: 5.5rem;
 }
 
 .intro-sns .sns-link {
@@ -453,11 +453,8 @@ main.page-main {
 
 .intro-sns .sns-label {
   display: block;
-  font-size: clamp(0.5625rem, 2.8cqi, 0.875rem);
-  line-height: 1.3;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.875rem;
+  line-height: 1.4;
 }
 
 .intro-dialogue {
@@ -1524,30 +1521,28 @@ body.instagram-modal-open {
   .intro-sns .sns-list {
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: clamp(0.25rem, 2cqi, 0.5rem);
+    justify-content: center;
+    gap: clamp(2rem, 14vw, 3.5rem);
   }
 
   .intro-sns .sns-list li {
-    flex: 1;
-    min-width: 0;
+    flex: 0 0 auto;
+    min-width: 5.5rem;
   }
 
   .intro-sns .sns-link {
-    width: 100%;
+    width: auto;
     padding: var(--space-sm) var(--space-xs);
   }
 
   .intro-sns .sns-icon {
-    width: clamp(40px, calc((100cqi - 1.25rem) / 4), 56px);
-    height: clamp(40px, calc((100cqi - 1.25rem) / 4), 56px);
+    width: clamp(52px, 16vw, 64px);
+    height: clamp(52px, 16vw, 64px);
   }
 
   .intro-sns .sns-label {
-    font-size: 0.875rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 0.8125rem;
+    line-height: 1.4;
   }
 
   .intro-dialogue {
