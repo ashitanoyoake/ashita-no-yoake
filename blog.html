@@ -58,112 +58,20 @@
     </header>
 
     <div class="blog-layout">
-      <div class="blog-main">
-        <ul class="blog-list">
-          <li class="blog-item" data-category="sample-a">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.06</span>
-                <span class="blog-category">サンプルA</span>
-                <span class="blog-title">サンプル記事 01</span>
-                <p class="blog-excerpt">これはブログ一覧の表示確認用サンプル記事です。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-          <li class="blog-item" data-category="sample-b">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.05</span>
-                <span class="blog-category">サンプルB</span>
-                <span class="blog-title">サンプル記事 02</span>
-                <p class="blog-excerpt">記事タイトルや概要文のレイアウトを確認するためのサンプルです。一覧表示の見え方をテストするためのダミーデータです。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-          <li class="blog-item" data-category="sample-c">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.04</span>
-                <span class="blog-category">サンプルC</span>
-                <span class="blog-title">サンプル記事 03</span>
-                <p class="blog-excerpt">ブログページの表示確認用ダミー記事です。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-          <li class="blog-item" data-category="sample-a">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.03</span>
-                <span class="blog-category">サンプルA</span>
-                <span class="blog-title">サンプル記事 04</span>
-                <p class="blog-excerpt">カテゴリー表示や日付の並びを確認するためのサンプル記事です。実際の公開内容ではありません。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-          <li class="blog-item" data-category="sample-b">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.02</span>
-                <span class="blog-category">サンプルB</span>
-                <span class="blog-title">サンプル記事 05</span>
-                <p class="blog-excerpt">レイアウト確認用のサンプル記事です。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-          <li class="blog-item" data-category="sample-c">
-            <a href="#" class="blog-item-link">
-              <div class="blog-item-body">
-                <span class="blog-date">0001.01.01</span>
-                <span class="blog-category">サンプルC</span>
-                <span class="blog-title">サンプル記事 06</span>
-                <p class="blog-excerpt">これはブログ一覧の表示確認用サンプル記事です。記事タイトル・概要文・カテゴリー・公開日の表示をテストするためのダミーデータであり、実際の記事内容ではありません。</p>
-              </div>
-              <span class="blog-arrow">→</span>
-            </a>
-          </li>
-        </ul>
+      <div class="blog-main" data-blog-list-root>
+        <ul class="blog-list" aria-live="polite" hidden></ul>
+        <p class="blog-list-message">読み込み中...</p>
       </div>
 
       <aside class="blog-sidebar" aria-label="ブログサイドバー">
         <section class="blog-widget blog-widget-recent">
           <h2 class="blog-widget-title">最近の記事</h2>
-          <ul class="blog-recent-list">
-            <li>
-              <a href="#" class="blog-recent-link">サンプル記事 01</a>
-              <time class="blog-recent-date" datetime="0001-01-06">0001.01.06</time>
-            </li>
-            <li>
-              <a href="#" class="blog-recent-link">サンプル記事 02</a>
-              <time class="blog-recent-date" datetime="0001-01-05">0001.01.05</time>
-            </li>
-            <li>
-              <a href="#" class="blog-recent-link">サンプル記事 03</a>
-              <time class="blog-recent-date" datetime="0001-01-04">0001.01.04</time>
-            </li>
-          </ul>
+          <ul class="blog-recent-list" aria-live="polite"></ul>
         </section>
 
         <section class="blog-widget blog-widget-categories">
           <h2 class="blog-widget-title">カテゴリ</h2>
-          <ul class="blog-category-list">
-            <li>
-              <button type="button" class="blog-category-button is-active" data-filter="all">すべて</button>
-            </li>
-            <li>
-              <button type="button" class="blog-category-button" data-filter="sample-a">サンプルA</button>
-            </li>
-            <li>
-              <button type="button" class="blog-category-button" data-filter="sample-b">サンプルB</button>
-            </li>
-            <li>
-              <button type="button" class="blog-category-button" data-filter="sample-c">サンプルC</button>
-            </li>
-          </ul>
+          <ul class="blog-category-list"></ul>
         </section>
 
         <section class="blog-widget blog-widget-profile">
@@ -192,5 +100,6 @@
   <button class="page-top-button" type="button" aria-label="ページトップへ戻る">↑ Top</button>
 
   <script src="script.js"></script>
+  <script src="js/blog-list.js"></script>
 </body>
 </html>
