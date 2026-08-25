@@ -13,8 +13,8 @@
     gtag('config', 'G-9WKCQCYGFY');
   </script>
   <link rel="icon" href="images/favicon.png" type="image/png">
-  <meta name="description" content="ブログ — あしたの夜明け.com">
-  <title>ブログ | あしたの夜明け.com</title>
+  <meta name="description" content="ブログ記事 — あしたの夜明け.com">
+  <title>ブログ記事 | あしたの夜明け.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
@@ -49,18 +49,22 @@
   </header>
 
   <main class="content-inner page-main">
-    <header class="page-header">
-      <div class="page-deco">
-        <img src="images/guide/blog.jpg" alt="" class="page-deco-image page-deco-image-sm" width="128" height="128">
-      </div>
-      <h1 class="page-title">ブログ</h1>
-      <p class="page-lead">日常の記録や映画・趣味の雑記を綴るページです。</p>
-    </header>
-
     <div class="blog-layout">
-      <div class="blog-main" data-blog-list-root>
-        <ul class="blog-list" aria-live="polite" hidden></ul>
-        <p class="blog-list-message">読み込み中...</p>
+      <div class="blog-main" data-blog-post-root>
+        <article class="blog-post" hidden>
+          <p class="blog-post-back">
+            <a href="blog.html" class="blog-post-back-link">← ブログ一覧へ戻る</a>
+          </p>
+          <header class="blog-post-header">
+            <time class="blog-post-date blog-date"></time>
+            <span class="blog-post-category blog-category"></span>
+            <h1 class="blog-post-title"></h1>
+            <ul class="blog-post-tags" hidden></ul>
+            <img class="blog-post-thumb" alt="" width="480" height="270" hidden>
+          </header>
+          <div class="blog-post-body"></div>
+        </article>
+        <p class="blog-post-message">読み込み中...</p>
       </div>
 
       <aside class="blog-sidebar" aria-label="ブログサイドバー">
@@ -71,7 +75,9 @@
 
         <section class="blog-widget blog-widget-categories">
           <h2 class="blog-widget-title">カテゴリ</h2>
-          <ul class="blog-category-list"></ul>
+          <p class="blog-post-sidebar-note">
+            <a href="blog.html">ブログ一覧でカテゴリを見る →</a>
+          </p>
         </section>
 
         <section class="blog-widget blog-widget-profile">
@@ -101,6 +107,6 @@
 
   <script src="script.js"></script>
   <script src="js/blog-common.js"></script>
-  <script src="js/blog-list.js"></script>
+  <script src="js/blog-post.js"></script>
 </body>
 </html>

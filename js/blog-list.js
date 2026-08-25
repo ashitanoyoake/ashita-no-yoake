@@ -4,7 +4,7 @@
  */
 (function () {
   const blogMain = document.querySelector("[data-blog-list-root]");
-  if (!blogMain) return;
+  if (!blogMain || !window.BlogCommon) return;
 
   const listEl = blogMain.querySelector(".blog-list");
   const messageEl = blogMain.querySelector(".blog-list-message");
@@ -13,12 +13,20 @@
 
   if (!listEl || !messageEl) return;
 
-  const DATA_URL = new URL("data/posts/posts-index.json", window.location.href).href;
-  const DEFAULT_THUMBNAIL = "images/guide/blog.jpg";
+  const {
+    DEFAULT_THUMBNAIL,
+    DEFAULT_CATEGORY,
+    formatPublishDate,
+    resolveThumbnailUrl,
+    getCategoryLabel,
+    parsePostsIndex,
+    buildPostUrl,
+    getPostsIndexUrl,
+  } = window.BlogCommon;
+
   const LOADING_MESSAGE = "読み込み中...";
   const EMPTY_MESSAGE = "現在公開中の記事はありません。";
   const ERROR_MESSAGE = "記事を読み込めませんでした。";
-  const DEFAULT_CATEGORY = "未分類";
 
   /** @type {Array<{id: number, title: string, publishDate: string, category: string, tags: string[], thumbnail: string, slug: string, markdownPath: string}>} */
   let posts = [];
@@ -36,64 +44,15 @@
   }
 
   /**
-   * @param {string} publishDate
+   * @param {typeof posts[number]} post
    * @returns {string}
    */
-  function formatPublishDate(publishDate) {
-    const trimmed = publishDate.trim();
-    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(trimmed);
-
-    if (!match) {
-      return trimmed;
+  function getPostHref(post) {
+    if (typeof post.markdownPath === "string" && post.markdownPath.trim()) {
+      return buildPostUrl(post.markdownPath);
     }
 
-    return `${match[1]}.${match[2]}.${match[3]}`;
-  }
-
-  /**
-   * @param {string} thumbnail
-   * @returns {string}
-   */
-  function resolveThumbnailUrl(thumbnail) {
-    const trimmed = thumbnail.trim();
-
-    if (!trimmed) {
-      return DEFAULT_THUMBNAIL;
-    }
-
-    if (trimmed.startsWith("/") || trimmed.startsWith("images/")) {
-      return trimmed;
-    }
-
-    return DEFAULT_THUMBNAIL;
-  }
-
-  /**
-   * @param {string} category
-   * @returns {string}
-   */
-  function getCategoryLabel(category) {
-    const trimmed = category.trim();
-    return trimmed || DEFAULT_CATEGORY;
-  }
-
-  /**
-   * @param {unknown} data
-   * @returns {typeof posts | null}
-   */
-  function parsePostsIndex(data) {
-    if (!Array.isArray(data)) {
-      return null;
-    }
-
-    return data.filter((entry) => {
-      return (
-        entry &&
-        typeof entry === "object" &&
-        typeof entry.title === "string" &&
-        typeof entry.publishDate === "string"
-      );
-    });
+    return "blog.html";
   }
 
   /**
@@ -120,7 +79,7 @@
     }
 
     const link = document.createElement("a");
-    link.href = "#";
+    link.href = getPostHref(post);
     link.className = "blog-item-link";
 
     const thumb = document.createElement("img");
@@ -209,7 +168,7 @@
       const li = document.createElement("li");
 
       const link = document.createElement("a");
-      link.href = "#";
+      link.href = getPostHref(post);
       link.className = "blog-recent-link";
       link.textContent = post.title;
 
@@ -336,7 +295,7 @@
     renderCategoryButtons([]);
 
     try {
-      const response = await fetch(DATA_URL, { cache: "no-cache" });
+      const response = await fetch(getPostsIndexUrl(), { cache: "no-cache" });
 
       if (!response.ok) {
         renderErrorState();
