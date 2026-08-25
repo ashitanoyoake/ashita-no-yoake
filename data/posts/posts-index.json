@@ -1,0 +1,32 @@
+[
+  {
+    "id": 3,
+    "title": "CMS公開テスト3",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト3",
+    "markdownPath": "2026-08-25-cms公開テスト3.md"
+  },
+  {
+    "id": 2,
+    "title": "CMS公開テスト2",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト2",
+    "markdownPath": "2026-08-25-cms公開テスト2.md"
+  },
+  {
+    "id": 1,
+    "title": "CMS公開テスト",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト",
+    "markdownPath": "2026-08-25-cms公開テスト.md"
+  }
+]
