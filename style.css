@@ -1164,6 +1164,10 @@ body.instagram-modal-open {
   border-radius: 999px;
 }
 
+.blog-post-thumb[hidden] {
+  display: none !important;
+}
+
 .blog-post-thumb {
   display: block;
   width: 100%;

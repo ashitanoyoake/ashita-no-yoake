@@ -9,7 +9,6 @@
   const {
     DEFAULT_CATEGORY,
     formatPublishDate,
-    resolveThumbnailUrl,
     resolveContentImageUrl,
     getCategoryLabel,
     parsePostsIndex,
@@ -351,10 +350,11 @@
         : [];
     const thumbnail =
       typeof frontmatter.thumbnail === "string" && frontmatter.thumbnail.trim()
-        ? frontmatter.thumbnail
-        : typeof indexEntry.thumbnail === "string"
-          ? indexEntry.thumbnail
+        ? frontmatter.thumbnail.trim()
+        : typeof indexEntry.thumbnail === "string" && indexEntry.thumbnail.trim()
+          ? indexEntry.thumbnail.trim()
           : "";
+    const thumbnailUrl = thumbnail ? resolveContentImageUrl(thumbnail) : null;
 
     if (backLinkEl) {
       backLinkEl.href = "blog.html";
@@ -379,11 +379,13 @@
     }
 
     if (thumbEl) {
-      if (thumbnail.trim()) {
-        thumbEl.src = resolveThumbnailUrl(thumbnail);
+      if (thumbnailUrl) {
+        thumbEl.src = thumbnailUrl;
         thumbEl.alt = "";
         thumbEl.removeAttribute("hidden");
       } else {
+        thumbEl.removeAttribute("src");
+        thumbEl.alt = "";
         thumbEl.hidden = true;
       }
     }
