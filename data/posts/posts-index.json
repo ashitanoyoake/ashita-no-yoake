@@ -1,5 +1,17 @@
 [
   {
+    "id": 4,
+    "title": "静かな朝と、書くことの楽しさ",
+    "publishDate": "2026-08-25",
+    "category": "ブログ",
+    "tags": [
+      "ブログ、朝活、ライフスタイル、コーヒー"
+    ],
+    "thumbnail": "/images/posts/272884ef.png",
+    "slug": "静かな朝と、書くことの楽しさ",
+    "markdownPath": "2026-08-25-静かな朝と、書くことの楽しさ.md"
+  },
+  {
     "id": 3,
     "title": "CMS公開テスト3",
     "publishDate": "2026-08-25",
