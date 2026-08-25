@@ -104,16 +104,16 @@
       if (inTags) {
         const tagMatch = /^\s*-\s*(.+)$/.exec(rawLine);
 
-        if (!tagMatch) {
-          return null;
+        if (tagMatch) {
+          try {
+            result.tags.push(JSON.parse(tagMatch[1].trim()));
+          } catch {
+            return null;
+          }
+          continue;
         }
 
-        try {
-          result.tags.push(JSON.parse(tagMatch[1].trim()));
-        } catch {
-          return null;
-        }
-        continue;
+        inTags = false;
       }
 
       const keyValueMatch = /^([a-zA-Z]+):\s*(.+)$/.exec(line);
