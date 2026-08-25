@@ -57,6 +57,27 @@
   }
 
   /**
+   * 詳細ページ用。空文字とデフォルト画像 path は null を返す。
+   * @param {string} thumbnail
+   * @returns {string | null}
+   */
+  function resolvePostDetailThumbnailUrl(thumbnail) {
+    const trimmed = thumbnail.trim();
+
+    if (!trimmed) {
+      return null;
+    }
+
+    const normalized = trimmed.replace(/^\//, "");
+
+    if (normalized === DEFAULT_THUMBNAIL) {
+      return null;
+    }
+
+    return resolveContentImageUrl(trimmed);
+  }
+
+  /**
    * @param {string} category
    * @returns {string}
    */
@@ -136,6 +157,7 @@
     formatPublishDate,
     resolveThumbnailUrl,
     resolveContentImageUrl,
+    resolvePostDetailThumbnailUrl,
     getCategoryLabel,
     parsePostsIndex,
     buildPostUrl,

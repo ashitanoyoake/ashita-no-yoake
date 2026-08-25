@@ -9,6 +9,7 @@
   const {
     DEFAULT_CATEGORY,
     formatPublishDate,
+    resolvePostDetailThumbnailUrl,
     resolveContentImageUrl,
     getCategoryLabel,
     parsePostsIndex,
@@ -354,7 +355,7 @@
         : typeof indexEntry.thumbnail === "string" && indexEntry.thumbnail.trim()
           ? indexEntry.thumbnail.trim()
           : "";
-    const thumbnailUrl = thumbnail ? resolveContentImageUrl(thumbnail) : null;
+    const thumbnailUrl = resolvePostDetailThumbnailUrl(thumbnail);
 
     if (backLinkEl) {
       backLinkEl.href = "blog.html";
