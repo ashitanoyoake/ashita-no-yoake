@@ -150,6 +150,19 @@
         </div>
       </section>
 
+      <section
+        class="home-section home-latest"
+        data-home-latest-root
+        hidden
+        aria-labelledby="home-latest-heading"
+      >
+        <h2 id="home-latest-heading" class="section-heading">最新のブログ</h2>
+        <ul class="home-latest-list"></ul>
+        <p class="home-latest-more">
+          <a href="blog.html" class="home-latest-more-link">ブログ一覧を見る</a>
+        </p>
+      </section>
+
       <section class="home-section page-guide" aria-labelledby="guide-heading">
         <h2 id="guide-heading" class="section-heading">ページ案内</h2>
         <!-- ページ案内アイコン: images/guide/ 内の jpg を差し替えるだけで反映されます -->
@@ -201,5 +214,7 @@
   <button class="page-top-button" type="button" aria-label="ページトップへ戻る">↑ Top</button>
 
   <script src="script.js"></script>
+  <script src="js/blog-common.js"></script>
+  <script src="js/home-latest.js"></script>
 </body>
 </html>

@@ -390,6 +390,90 @@ main.page-main {
   margin-bottom: var(--space-md);
 }
 
+.home-latest[hidden] {
+  display: none !important;
+}
+
+.home-latest-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.home-latest-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  color: var(--color-text);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.home-latest-card:hover {
+  color: var(--color-text);
+  text-decoration: none;
+  border-color: var(--color-cream-dark);
+  background-color: var(--color-cream);
+}
+
+.home-latest-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background-color: var(--color-cream);
+}
+
+.home-latest-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: var(--space-sm) var(--space-sm) var(--space-md);
+}
+
+.home-latest-body .blog-date {
+  margin-bottom: 0;
+}
+
+.home-latest-body .blog-category {
+  margin-bottom: 0.15rem;
+}
+
+.home-latest-title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.home-latest-more {
+  margin: 0;
+  text-align: center;
+}
+
+.home-latest-more-link {
+  display: inline-block;
+  padding: 0.5rem 1.75rem;
+  font-size: 0.875rem;
+  color: var(--color-white);
+  background-color: var(--color-accent);
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+}
+
+.home-latest-more-link:hover {
+  color: var(--color-white);
+  background-color: var(--color-text);
+}
+
 /* 自己紹介 */
 .intro-card {
   display: flex;
@@ -694,6 +778,10 @@ main.page-main {
 }
 
 @media (max-width: 900px) {
+  .home-latest-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .instagram-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1618,6 +1706,10 @@ body.instagram-modal-open {
   }
 
   .guide-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .home-latest-list {
     grid-template-columns: 1fr;
   }
 

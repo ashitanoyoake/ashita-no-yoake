@@ -107,6 +107,35 @@
   }
 
   /**
+   * @param {{ publishDate?: string, id?: number }} left
+   * @param {{ publishDate?: string, id?: number }} right
+   * @returns {number}
+   */
+  function comparePostsByNewest(left, right) {
+    const dateLeft = typeof left.publishDate === "string" ? left.publishDate.trim() : "";
+    const dateRight = typeof right.publishDate === "string" ? right.publishDate.trim() : "";
+    const dateCompare = dateRight.localeCompare(dateLeft);
+
+    if (dateCompare !== 0) {
+      return dateCompare;
+    }
+
+    const idLeft = typeof left.id === "number" ? left.id : 0;
+    const idRight = typeof right.id === "number" ? right.id : 0;
+
+    return idRight - idLeft;
+  }
+
+  /**
+   * @template {{ publishDate?: string, id?: number }} T
+   * @param {T[]} posts
+   * @returns {T[]}
+   */
+  function sortPostsByNewest(posts) {
+    return [...posts].sort(comparePostsByNewest);
+  }
+
+  /**
    * @param {string} markdownPath
    * @returns {string}
    */
@@ -160,6 +189,7 @@
     resolvePostDetailThumbnailUrl,
     getCategoryLabel,
     parsePostsIndex,
+    sortPostsByNewest,
     buildPostUrl,
     getPostsIndexUrl,
     getPostMarkdownUrl,
