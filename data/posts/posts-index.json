@@ -9,7 +9,8 @@
     ],
     "thumbnail": "/images/posts/272884ef.png",
     "slug": "静かな朝と、書くことの楽しさ",
-    "markdownPath": "2026-08-25-静かな朝と、書くことの楽しさ.md"
+    "markdownPath": "2026-08-25-静かな朝と、書くことの楽しさ.md",
+    "excerpt": "今日は少し早起きして、静かな朝の時間にブログを書いてみます。 コーヒーの香りと、窓からのやわらかな光の中で、頭の中が少しずつ整理されていく感覚が好きです。"
   },
   {
     "id": 3,
@@ -19,7 +20,8 @@
     "tags": [],
     "thumbnail": "",
     "slug": "cms公開テスト3",
-    "markdownPath": "2026-08-25-cms公開テスト3.md"
+    "markdownPath": "2026-08-25-cms公開テスト3.md",
+    "excerpt": "CMSからの実公開テスト3です。"
   },
   {
     "id": 2,
@@ -29,7 +31,8 @@
     "tags": [],
     "thumbnail": "",
     "slug": "cms公開テスト2",
-    "markdownPath": "2026-08-25-cms公開テスト2.md"
+    "markdownPath": "2026-08-25-cms公開テスト2.md",
+    "excerpt": "MSからの実公開テストです。"
   },
   {
     "id": 1,
@@ -39,6 +42,8 @@
     "tags": [],
     "thumbnail": "",
     "slug": "cms公開テスト",
-    "markdownPath": "2026-08-25-cms公開テスト.md"
+    "markdownPath": "2026-08-25-cms公開テスト.md",
+    "excerpt": "CMSからの公開テスト記事です。",
+    "updatedAt": "2026-08-26T06:47:31.812Z"
   }
 ]
