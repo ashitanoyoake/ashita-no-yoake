@@ -1,5 +1,39 @@
 [
   {
+    "id": 7,
+    "title": "CMS公開テスト",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト",
+    "markdownPath": "2026-08-25-cms公開テスト.md",
+    "excerpt": "CMSからの公開テスト記事です。",
+    "updatedAt": "2026-08-27T06:01:02.611Z"
+  },
+  {
+    "id": 6,
+    "title": "CMS公開テスト2",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト2",
+    "markdownPath": "2026-08-25-cms公開テスト2.md",
+    "excerpt": "MSからの実公開テストです。"
+  },
+  {
+    "id": 5,
+    "title": "CMS公開テスト3",
+    "publishDate": "2026-08-25",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "cms公開テスト3",
+    "markdownPath": "2026-08-25-cms公開テスト3.md",
+    "excerpt": "CMSからの実公開テスト3です。"
+  },
+  {
     "id": 4,
     "title": "静かな朝と、書くことの楽しさ",
     "publishDate": "2026-08-25",
@@ -11,39 +45,5 @@
     "slug": "静かな朝と、書くことの楽しさ",
     "markdownPath": "2026-08-25-静かな朝と、書くことの楽しさ.md",
     "excerpt": "今日は少し早起きして、静かな朝の時間にブログを書いてみます。 コーヒーの香りと、窓からのやわらかな光の中で、頭の中が少しずつ整理されていく感覚が好きです。"
-  },
-  {
-    "id": 3,
-    "title": "CMS公開テスト3",
-    "publishDate": "2026-08-25",
-    "category": "お知らせ",
-    "tags": [],
-    "thumbnail": "",
-    "slug": "cms公開テスト3",
-    "markdownPath": "2026-08-25-cms公開テスト3.md",
-    "excerpt": "CMSからの実公開テスト3です。"
-  },
-  {
-    "id": 2,
-    "title": "CMS公開テスト2",
-    "publishDate": "2026-08-25",
-    "category": "お知らせ",
-    "tags": [],
-    "thumbnail": "",
-    "slug": "cms公開テスト2",
-    "markdownPath": "2026-08-25-cms公開テスト2.md",
-    "excerpt": "MSからの実公開テストです。"
-  },
-  {
-    "id": 1,
-    "title": "CMS公開テスト",
-    "publishDate": "2026-08-25",
-    "category": "お知らせ",
-    "tags": [],
-    "thumbnail": "",
-    "slug": "cms公開テスト",
-    "markdownPath": "2026-08-25-cms公開テスト.md",
-    "excerpt": "CMSからの公開テスト記事です。",
-    "updatedAt": "2026-08-27T00:59:32.623Z"
   }
 ]
