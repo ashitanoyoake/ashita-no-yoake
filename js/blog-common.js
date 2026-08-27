@@ -144,6 +144,36 @@
   }
 
   /**
+   * @param {string} slug
+   * @returns {string}
+   */
+  function buildStaticPostUrl(slug) {
+    const trimmed = slug.trim();
+
+    if (!trimmed) {
+      return "";
+    }
+
+    return `/blog/${encodeURIComponent(trimmed)}.html`;
+  }
+
+  /**
+   * @param {{ slug?: string, markdownPath?: string }} post
+   * @returns {string}
+   */
+  function resolvePostHref(post) {
+    if (post && typeof post.slug === "string" && post.slug.trim()) {
+      return buildStaticPostUrl(post.slug);
+    }
+
+    if (post && typeof post.markdownPath === "string" && post.markdownPath.trim()) {
+      return buildPostUrl(post.markdownPath);
+    }
+
+    return "blog.html";
+  }
+
+  /**
    * @returns {string}
    */
   function getPostsIndexUrl() {
@@ -191,6 +221,8 @@
     parsePostsIndex,
     sortPostsByNewest,
     buildPostUrl,
+    buildStaticPostUrl,
+    resolvePostHref,
     getPostsIndexUrl,
     getPostMarkdownUrl,
     isAllowedPostParameter,

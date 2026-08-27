@@ -16,7 +16,7 @@
     getCategoryLabel,
     parsePostsIndex,
     sortPostsByNewest,
-    buildPostUrl,
+    resolvePostHref,
     getPostsIndexUrl,
   } = window.BlogCommon;
 
@@ -32,7 +32,7 @@
 
     const link = document.createElement("a");
     link.className = "home-latest-card";
-    link.href = buildPostUrl(post.markdownPath);
+    link.href = resolvePostHref(post);
 
     const thumb = document.createElement("img");
     thumb.className = "home-latest-thumb";

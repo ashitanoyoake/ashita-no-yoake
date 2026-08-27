@@ -20,7 +20,7 @@
     resolveThumbnailUrl,
     getCategoryLabel,
     parsePostsIndex,
-    buildPostUrl,
+    resolvePostHref,
     getPostsIndexUrl,
   } = window.BlogCommon;
 
@@ -48,11 +48,7 @@
    * @returns {string}
    */
   function getPostHref(post) {
-    if (typeof post.markdownPath === "string" && post.markdownPath.trim()) {
-      return buildPostUrl(post.markdownPath);
-    }
-
-    return "blog.html";
+    return resolvePostHref(post);
   }
 
   /**

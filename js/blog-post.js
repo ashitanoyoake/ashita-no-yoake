@@ -13,7 +13,7 @@
     resolveContentImageUrl,
     getCategoryLabel,
     parsePostsIndex,
-    buildPostUrl,
+    resolvePostHref,
     getPostsIndexUrl,
     getPostMarkdownUrl,
     isAllowedPostParameter,
@@ -311,7 +311,7 @@
     recentItems.forEach((post) => {
       const item = document.createElement("li");
       const link = document.createElement("a");
-      link.href = buildPostUrl(post.markdownPath);
+      link.href = resolvePostHref(post);
       link.className = "blog-recent-link";
       link.textContent = post.title;
 
