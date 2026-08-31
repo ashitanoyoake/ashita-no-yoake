@@ -1,9 +1,11 @@
 {
   "siteId": "ashitanoyoake",
   "managedPaths": [
+    "blog/cms公開テスト.html",
     "blog/cms公開テスト2.html",
     "blog/cms公開テスト3.html",
     "blog/静かな朝と、書くことの楽しさ.html",
+    "data/posts/2026-08-25-cms公開テスト.md",
     "data/posts/2026-08-25-cms公開テスト2.md",
     "data/posts/2026-08-25-cms公開テスト3.md",
     "data/posts/2026-08-25-静かな朝と、書くことの楽しさ.md",
@@ -12,5 +14,5 @@
     "images/posts/84de5ee5.png",
     "sitemap.xml"
   ],
-  "updatedAt": "2026-08-31T08:35:15.240Z"
+  "updatedAt": "2026-08-31T08:35:31.304Z"
 }
