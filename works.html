@@ -57,87 +57,9 @@
       <p class="page-lead">制作したWebサイトを紹介しています。</p>
     </header>
 
-    <section class="works-portfolio" aria-label="制作実績">
-      <article class="works-card">
-        <div class="works-card-body">
-          <span class="works-badge">公開中</span>
-          <h2 class="works-card-title">あしたの夜明け.com</h2>
-          <p class="works-card-desc">
-            イラストや映画の感想、日常の記録を発信する個人サイトです。<br>
-            HTML/CSS/JavaScriptを用いて制作し、GitHub Pagesで公開。<br>
-            CursorとChatGPTを活用しながら制作・改善を進めました。<br>
-            独自ドメインの設定やInstagramとの自動連携、GitHub Actionsによる自動化などを取り入れ、<br>
-            運営しやすさにも配慮しています。
-          </p>
-
-          <div class="works-card-visual">
-            <div class="works-mockup-stage">
-              <div class="works-mockup works-mockup-pc" aria-hidden="true">
-                <div class="works-mockup-frame">
-                  <div class="works-mockup-bar">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div class="works-mockup-screen">
-                    <img
-                      src="images/main-visual.jpg"
-                      alt=""
-                      class="works-mockup-image"
-                      width="640"
-                      height="285"
-                      loading="lazy"
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="works-meta">
-            <div class="works-meta-group">
-              <h3 class="works-meta-label">担当範囲</h3>
-              <ul class="works-tag-list">
-                <li>企画</li>
-                <li>UIデザイン</li>
-                <li>コーディング</li>
-                <li>独自ドメイン設定</li>
-                <li>Instagram連携</li>
-              </ul>
-            </div>
-            <div class="works-meta-group">
-              <h3 class="works-meta-label">使用技術</h3>
-              <ul class="works-tag-list works-tag-list-tech">
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Cursor</li>
-                <li>ChatGPT</li>
-                <li>GitHub</li>
-                <li>GitHub Pages</li>
-                <li>GitHub Actions</li>
-                <li>Instagram Graph API</li>
-              </ul>
-            </div>
-            <div class="works-meta-group">
-              <h3 class="works-meta-label">学び</h3>
-              <p class="works-meta-text">CursorとChatGPTを開発支援に活用し、提案されたコードを確認・修正しながら、設計、実装、ブラウザ確認、Gitによる変更管理までを繰り返す開発の流れを学びました。</p>
-            </div>
-          </div>
-
-          <a
-            href="https://ashitanoyoake.com/"
-            class="works-card-button"
-            target="_blank"
-            rel="noopener noreferrer"
-          >サイトを見る</a>
-        </div>
-      </article>
-
-      <p class="works-coming-soon">
-        現在、新しい作品を制作中です。<br>
-        公開までしばらくお待ちください。
-      </p>
+    <section class="works-list-section" aria-label="制作実績" data-works-list-root>
+      <ul class="works-list" aria-live="polite" hidden></ul>
+      <p class="works-list-message">読み込み中...</p>
     </section>
   </main>
 
@@ -151,5 +73,6 @@
   <button class="page-top-button" type="button" aria-label="ページトップへ戻る">↑ Top</button>
 
   <script src="script.js"></script>
+  <script src="js/works-list.js"></script>
 </body>
 </html>
