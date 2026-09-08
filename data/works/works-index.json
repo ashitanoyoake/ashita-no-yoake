@@ -1,0 +1,13 @@
+[
+  {
+    "title": "あしたの夜明け.com",
+    "slug": "あしたの夜明けcom",
+    "category": "個人サイト",
+    "summary": "イラストや映画の感想、日常の記録を発信する個人サイトです。HTML/CSS/JavaScriptを用いて制作し、独自ドメイン設定やInstagram連携、GitHub Actionsによる自動化なども取り入れています。",
+    "featuredImage": "/images/posts/9d51c665.jpg",
+    "producedAt": "2026-07-01",
+    "publishedAt": "2026-09-08",
+    "path": "/works/%E3%81%82%E3%81%97%E3%81%9F%E3%81%AE%E5%A4%9C%E6%98%8E%E3%81%91com.html",
+    "updatedAt": "2026-09-08T12:57:55.942Z"
+  }
+]
