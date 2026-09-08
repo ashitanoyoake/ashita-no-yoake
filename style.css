@@ -1874,12 +1874,17 @@ body.instagram-modal-open {
 }
 
 .works-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-md);
+  row-gap: var(--space-lg);
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.works-list-item:only-child {
+  grid-column: 1 / -1;
 }
 
 .works-list[hidden] {
@@ -2263,7 +2268,13 @@ body.instagram-modal-open {
   }
 
   .works-list {
-    gap: var(--space-md);
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: var(--space-md);
+  }
+
+  .works-list-item:only-child {
+    grid-column: auto;
   }
 
   .works-list-card {
