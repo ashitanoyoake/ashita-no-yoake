@@ -7,7 +7,6 @@
       "slug": "あしたの夜明けcom",
       "status": "公開",
       "publishedAt": "2026-09-08",
-      "updatedAt": "2026-09-08T12:57:55.942Z",
       "category": "個人サイト",
       "summary": "イラストや映画の感想、日常の記録を発信する個人サイトです。HTML/CSS/JavaScriptを用いて制作し、独自ドメイン設定やInstagram連携、GitHub Actionsによる自動化なども取り入れています。",
       "featuredImage": "/images/posts/9d51c665.jpg",
@@ -50,6 +49,7 @@
           "text": "CursorとChatGPTを開発支援に活用し、提案されたコードを確認・修正しながら、設計、実装、ブラウザ確認、Gitによる変更管理までを繰り返す開発の流れを学びました。"
         }
       ],
+      "updatedAt": "2026-09-11T04:31:03.565Z",
       "externalLink": "https://ashitanoyoake.com/"
     }
   ]
