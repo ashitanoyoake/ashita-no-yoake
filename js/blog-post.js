@@ -1,6 +1,7 @@
 /**
  * ブログ個別記事ページ
- * posts-index.json で post parameter を検証してから Markdown を表示する。
+ * 有効な slug がある場合は /blog/{slug}.html へ転送する。
+ * それ以外は posts-index.json で post parameter を検証してから Markdown を表示する。
  */
 (function () {
   const root = document.querySelector("[data-blog-post-root]");
@@ -14,6 +15,8 @@
     getCategoryLabel,
     parsePostsIndex,
     resolvePostHref,
+    resolveStaticPostRedirectUrl,
+    isLegacyBlogPostPage,
     getPostsIndexUrl,
     getPostMarkdownUrl,
     isAllowedPostParameter,
@@ -427,6 +430,15 @@
       if (!indexEntry) {
         showMessage(NOT_FOUND_MESSAGE);
         return;
+      }
+
+      if (isLegacyBlogPostPage(window.location.pathname)) {
+        const redirectUrl = resolveStaticPostRedirectUrl(indexEntry);
+
+        if (redirectUrl) {
+          window.location.replace(redirectUrl);
+          return;
+        }
       }
 
       renderRecentPosts(posts, indexEntry.markdownPath);

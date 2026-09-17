@@ -145,6 +145,36 @@
 
   /**
    * @param {string} slug
+   * @returns {boolean}
+   */
+  function isSafePostSlug(slug) {
+    if (!slug || typeof slug !== "string") {
+      return false;
+    }
+
+    const trimmed = slug.trim();
+
+    if (!trimmed) {
+      return false;
+    }
+
+    if (
+      trimmed.includes("..") ||
+      trimmed.includes("/") ||
+      trimmed.includes("\\") ||
+      trimmed.includes("?") ||
+      trimmed.includes("#") ||
+      trimmed.includes(":") ||
+      trimmed === "."
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @param {string} slug
    * @returns {string}
    */
   function buildStaticPostUrl(slug) {
@@ -155,6 +185,32 @@
     }
 
     return `/blog/${encodeURIComponent(trimmed)}.html`;
+  }
+
+  /**
+   * slug が安全なときだけ静的記事URLを返す。それ以外は空文字。
+   * resolvePostHref の旧URL fallback は使わない（転送ループ防止）。
+   * @param {{ slug?: string }} post
+   * @returns {string}
+   */
+  function resolveStaticPostRedirectUrl(post) {
+    if (!post || typeof post.slug !== "string" || !isSafePostSlug(post.slug)) {
+      return "";
+    }
+
+    return buildStaticPostUrl(post.slug);
+  }
+
+  /**
+   * @param {string} pathname
+   * @returns {boolean}
+   */
+  function isLegacyBlogPostPage(pathname) {
+    if (!pathname || typeof pathname !== "string") {
+      return false;
+    }
+
+    return /(?:^|\/)blog-post\.html$/i.test(pathname);
   }
 
   /**
@@ -221,7 +277,10 @@
     parsePostsIndex,
     sortPostsByNewest,
     buildPostUrl,
+    isSafePostSlug,
     buildStaticPostUrl,
+    resolveStaticPostRedirectUrl,
+    isLegacyBlogPostPage,
     resolvePostHref,
     getPostsIndexUrl,
     getPostMarkdownUrl,
