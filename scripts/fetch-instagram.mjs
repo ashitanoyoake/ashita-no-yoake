@@ -1,6 +1,9 @@
 /**
- * Instagram Graph API から最新投稿を取得し data/instagram.json に保存する。
+ * Instagram API with Instagram Login から最新投稿を取得し data/instagram.json に保存する。
  * GitHub Actions から実行する想定。取得失敗時は既存ファイルを上書きしない。
+ *
+ * ホストは graph.instagram.com（Instagram User access token 用）。
+ * Facebook Login 用の graph.facebook.com は使わない。
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -9,6 +12,9 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = path.join(__dirname, "..", "data", "instagram.json");
 const TEMP_PATH = `${OUTPUT_PATH}.tmp`;
+const API_HOST = "https://graph.instagram.com";
+// Instagram Login でも versioned path を使う。現行 v21.0 は公式 IG User 文書が残存し、
+// 今回使う media fields も安定しているため、復旧の最小変更として維持する。
 const API_VERSION = "v21.0";
 const POST_LIMIT = 9;
 
@@ -71,9 +77,9 @@ function normalizePost(item) {
 }
 
 /**
- * Instagram Graph API から投稿一覧を取得する。
- * @param {string} accessToken
- * @param {string} userId
+ * Instagram API with Instagram Login から投稿一覧を取得する。
+ * @param {string} accessToken Instagram User access token
+ * @param {string} userId Instagram professional account user ID
  * @returns {Promise<Record<string, unknown>[]>}
  */
 async function fetchInstagramPosts(accessToken, userId) {
@@ -83,7 +89,7 @@ async function fetchInstagramPosts(accessToken, userId) {
     access_token: accessToken,
   });
 
-  const url = `https://graph.facebook.com/${API_VERSION}/${userId}/media?${params}`;
+  const url = `${API_HOST}/${API_VERSION}/${userId}/media?${params}`;
   const response = await fetch(url);
 
   if (!response.ok) {
