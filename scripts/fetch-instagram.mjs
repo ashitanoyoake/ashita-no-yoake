@@ -17,6 +17,7 @@ const API_HOST = "https://graph.instagram.com";
 // 今回使う media fields も安定しているため、復旧の最小変更として維持する。
 const API_VERSION = "v21.0";
 const POST_LIMIT = 9;
+const EXIT_FAILURE = 1;
 
 const FIELDS = [
   "id",
@@ -27,6 +28,48 @@ const FIELDS = [
   "timestamp",
   "children{media_type,media_url,thumbnail_url}",
 ].join(",");
+
+/**
+ * ログ用に安全なエラー要約を作る（token / URL / 生bodyは出さない）。
+ * @param {number | null} status
+ * @param {string} bodyText
+ * @returns {string}
+ */
+function formatSafeApiError(status, bodyText) {
+  const parts = [];
+
+  if (typeof status === "number") {
+    parts.push(`HTTP ${status}`);
+  }
+
+  try {
+    const parsed = JSON.parse(bodyText);
+    const error = parsed && typeof parsed === "object" ? parsed.error : null;
+
+    if (error && typeof error === "object") {
+      if (typeof error.type === "string" && error.type) {
+        parts.push(`type=${error.type}`);
+      }
+      if (typeof error.code === "number" || typeof error.code === "string") {
+        parts.push(`code=${error.code}`);
+      }
+      if (
+        typeof error.error_subcode === "number" ||
+        typeof error.error_subcode === "string"
+      ) {
+        parts.push(`subcode=${error.error_subcode}`);
+      }
+    }
+  } catch {
+    // 生bodyはログしない
+  }
+
+  if (parts.length === 0) {
+    return "Instagram API error (details omitted)";
+  }
+
+  return `Instagram API error (${parts.join(", ")})`;
+}
 
 /**
  * 一覧表示用の画像URLを決定する（カルーセルは1枚目、動画はサムネイル優先）。
@@ -91,19 +134,25 @@ async function fetchInstagramPosts(accessToken, userId) {
 
   const url = `${API_HOST}/${API_VERSION}/${userId}/media?${params}`;
   const response = await fetch(url);
+  const bodyText = await response.text();
+
+  let data;
+
+  try {
+    data = bodyText ? JSON.parse(bodyText) : null;
+  } catch {
+    throw new Error(formatSafeApiError(response.status, ""));
+  }
 
   if (!response.ok) {
-    const errorBody = await response.text();
-    throw new Error(`Instagram API error (${response.status}): ${errorBody}`);
+    throw new Error(formatSafeApiError(response.status, bodyText));
   }
 
-  const data = await response.json();
-
-  if (data.error) {
-    throw new Error(`Instagram API error: ${JSON.stringify(data.error)}`);
+  if (data && typeof data === "object" && data.error) {
+    throw new Error(formatSafeApiError(response.status, bodyText));
   }
 
-  const items = Array.isArray(data.data) ? data.data : [];
+  const items = data && Array.isArray(data.data) ? data.data : [];
   return items.map(normalizePost).filter(Boolean).slice(0, POST_LIMIT);
 }
 
@@ -113,7 +162,7 @@ async function main() {
 
   if (!accessToken || !userId) {
     console.error("INSTAGRAM_ACCESS_TOKEN または INSTAGRAM_USER_ID が未設定です。");
-    process.exit(0);
+    process.exit(EXIT_FAILURE);
   }
 
   try {
@@ -132,9 +181,12 @@ async function main() {
     if (fs.existsSync(TEMP_PATH)) {
       fs.unlinkSync(TEMP_PATH);
     }
-    console.error("Instagram投稿の取得に失敗しました:", error.message);
+
+    const message =
+      error instanceof Error ? error.message : "Instagram API error (unknown)";
+    console.error("Instagram投稿の取得に失敗しました:", message);
     console.error("既存の data/instagram.json は保持されます。");
-    process.exit(0);
+    process.exit(EXIT_FAILURE);
   }
 }
 
