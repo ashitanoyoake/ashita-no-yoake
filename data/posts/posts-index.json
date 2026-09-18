@@ -1,16 +1,5 @@
 [
   {
-    "id": 6,
-    "title": "CMS公開テスト2",
-    "publishDate": "2026-08-25",
-    "category": "お知らせ",
-    "tags": [],
-    "thumbnail": "",
-    "slug": "cms公開テスト2",
-    "markdownPath": "2026-08-25-cms公開テスト2.md",
-    "excerpt": "MSからの実公開テストです。"
-  },
-  {
     "id": 5,
     "title": "CMS公開テスト3",
     "publishDate": "2026-08-25",
