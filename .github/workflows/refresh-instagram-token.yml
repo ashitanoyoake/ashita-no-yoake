@@ -1,0 +1,31 @@
+name: Refresh Instagram Token
+
+on:
+  schedule:
+    # 週1回（日曜 03:00 UTC）
+    - cron: "0 3 * * 0"
+  workflow_dispatch:
+
+# Secret 更新は GH_SECRETS_WRITE_TOKEN（fine-grained PAT）を使う。
+# GITHUB_TOKEN に不要な権限を与えない。
+permissions:
+  contents: read
+
+jobs:
+  refresh-instagram-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh Instagram access token
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_SECRETS_WRITE_TOKEN }}
+        run: node scripts/refresh-instagram-token.mjs
