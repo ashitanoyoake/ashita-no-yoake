@@ -1,16 +1,5 @@
 [
   {
-    "id": 5,
-    "title": "CMS公開テスト3",
-    "publishDate": "2026-08-25",
-    "category": "お知らせ",
-    "tags": [],
-    "thumbnail": "",
-    "slug": "cms公開テスト3",
-    "markdownPath": "2026-08-25-cms公開テスト3.md",
-    "excerpt": "CMSからの実公開テスト3です。"
-  },
-  {
     "id": 4,
     "title": "静かな朝と、書くことの楽しさ",
     "publishDate": "2026-08-25",
