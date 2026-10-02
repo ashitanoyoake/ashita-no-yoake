@@ -181,23 +181,17 @@
 
   /**
    * @param {typeof posts} items
+   * @param {string[] | null} canonicalNames
    * @returns {string[]}
    */
-  function getUniqueCategories(items) {
-    const seen = new Set();
-    /** @type {string[]} */
-    const categories = [];
+  function getVisibleCategories(items, canonicalNames) {
+    const usedNames = items.map((post) => getCategoryLabel(post.category));
 
-    items.forEach((post) => {
-      const label = getCategoryLabel(post.category);
+    if (window.BlogCategories) {
+      return window.BlogCategories.resolveVisibleBlogCategories(canonicalNames, usedNames);
+    }
 
-      if (!seen.has(label)) {
-        seen.add(label);
-        categories.push(label);
-      }
-    });
-
-    return categories;
+    return usedNames.filter((name, index) => name && usedNames.indexOf(name) === index);
   }
 
   /**
@@ -263,12 +257,13 @@
 
   /**
    * @param {typeof posts} items
+   * @param {string[] | null} canonicalNames
    */
-  function renderPosts(items) {
+  function renderPosts(items, canonicalNames) {
     posts = items;
     renderBlogList(items);
     renderRecentPosts(items);
-    renderCategoryButtons(getUniqueCategories(items));
+    renderCategoryButtons(getVisibleCategories(items, canonicalNames));
   }
 
   function renderEmptyState() {
@@ -291,7 +286,12 @@
     renderCategoryButtons([]);
 
     try {
-      const response = await fetch(getPostsIndexUrl(), { cache: "no-cache" });
+      const [response, canonicalNames] = await Promise.all([
+        fetch(getPostsIndexUrl(), { cache: "no-cache" }),
+        window.BlogCategories
+          ? window.BlogCategories.loadCanonicalCategoryNames(fetch, window.location.href)
+          : Promise.resolve(null),
+      ]);
 
       if (!response.ok) {
         renderErrorState();
@@ -311,7 +311,7 @@
         return;
       }
 
-      renderPosts(parsedPosts);
+      renderPosts(parsedPosts, canonicalNames);
     } catch {
       renderErrorState();
     }
