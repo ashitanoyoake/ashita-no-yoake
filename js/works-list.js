@@ -8,6 +8,8 @@
 
   const listEl = root.querySelector(".works-list");
   const messageEl = root.querySelector(".works-list-message");
+  const navEl = root.querySelector(".works-categories");
+  const categoryListEl = root.querySelector(".works-category-list");
 
   if (!listEl || !messageEl) return;
 
@@ -16,6 +18,10 @@
   const ERROR_MESSAGE = "制作実績を読み込めませんでした";
   const DETAIL_CUE = "詳細を見る";
   const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+  const ALL_FILTER =
+    window.WorksCategories && window.WorksCategories.ALL_WORKS_FILTER
+      ? window.WorksCategories.ALL_WORKS_FILTER
+      : "all";
 
   /**
    * @returns {string}
@@ -27,7 +33,18 @@
   /**
    * @param {string} text
    */
+  function hideCategoryNav() {
+    if (navEl instanceof HTMLElement) {
+      navEl.hidden = true;
+    }
+
+    if (categoryListEl) {
+      categoryListEl.innerHTML = "";
+    }
+  }
+
   function showMessage(text) {
+    hideCategoryNav();
     listEl.innerHTML = "";
     listEl.hidden = true;
     messageEl.textContent = text;
@@ -257,6 +274,7 @@
 
     const li = document.createElement("li");
     li.className = "works-list-item";
+    li.dataset.category = work.category || "";
 
     const link = document.createElement("a");
     link.className = "works-list-card";
@@ -372,6 +390,180 @@
     showList();
   }
 
+  /**
+   * @param {string[]} usedNames
+   * @param {string[] | null} canonicalNames
+   * @returns {string[]}
+   */
+  function visibleCategories(usedNames, canonicalNames) {
+    if (window.WorksCategories) {
+      return window.WorksCategories.resolveVisibleWorksCategories(canonicalNames, usedNames);
+    }
+
+    const seen = new Set();
+    /** @type {string[]} */
+    const categories = [];
+
+    usedNames.forEach((name) => {
+      if (!name || seen.has(name)) {
+        return;
+      }
+
+      seen.add(name);
+      categories.push(name);
+    });
+
+    return categories;
+  }
+
+  /**
+   * @param {string} search
+   * @param {string[]} categories
+   * @returns {string}
+   */
+  function filterFromSearch(search, categories) {
+    if (window.WorksCategories) {
+      return window.WorksCategories.resolveActiveWorksListFilter(
+        categories,
+        window.WorksCategories.readWorksListCategoryFilter(search),
+      );
+    }
+
+    return ALL_FILTER;
+  }
+
+  /**
+   * @param {string} filter
+   * @returns {string}
+   */
+  function urlForFilter(filter) {
+    const pathname = window.location.pathname || "/works.html";
+
+    if (window.WorksCategories) {
+      return window.WorksCategories.buildWorksListUrl(pathname, filter);
+    }
+
+    return pathname;
+  }
+
+  /**
+   * @param {string} filter
+   */
+  function applyListFilter(filter) {
+    listEl.querySelectorAll(".works-list-item").forEach((item) => {
+      const category = item instanceof HTMLElement ? item.dataset.category || "" : "";
+      item.hidden = !(filter === ALL_FILTER || category === filter);
+    });
+  }
+
+  /**
+   * @param {string} filter
+   */
+  function syncCategoryButtons(filter) {
+    if (!categoryListEl) {
+      return;
+    }
+
+    categoryListEl.querySelectorAll(".works-category-button").forEach((button) => {
+      const isCurrent = button.getAttribute("data-filter") === filter;
+      button.classList.toggle("is-active", isCurrent);
+      button.setAttribute("aria-pressed", isCurrent ? "true" : "false");
+    });
+  }
+
+  /**
+   * @param {string[]} categories
+   */
+  function renderCategoryNav(categories) {
+    if (!(navEl instanceof HTMLElement) || !categoryListEl) {
+      return;
+    }
+
+    const showNav = window.WorksCategories
+      ? window.WorksCategories.shouldShowWorksCategoryNav(categories)
+      : categories.length > 0;
+
+    if (!showNav) {
+      hideCategoryNav();
+      return;
+    }
+
+    categoryListEl.innerHTML = "";
+
+    const allItem = document.createElement("li");
+    const allButton = document.createElement("button");
+    allButton.type = "button";
+    allButton.className = "works-category-button";
+    allButton.dataset.filter = ALL_FILTER;
+    allButton.textContent = "すべて";
+    allItem.appendChild(allButton);
+    categoryListEl.appendChild(allItem);
+
+    categories.forEach((category) => {
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "works-category-button";
+      button.dataset.filter = category;
+      button.textContent = category;
+      item.appendChild(button);
+      categoryListEl.appendChild(item);
+    });
+
+    /**
+     * @param {string} filter
+     * @param {{ updateHistory?: boolean, replace?: boolean }} [options]
+     */
+    function applyFilter(filter, options) {
+      const nextOptions = options || {};
+      syncCategoryButtons(filter);
+      applyListFilter(filter);
+
+      if (nextOptions.updateHistory) {
+        const nextUrl = urlForFilter(filter);
+        const currentUrl = `${window.location.pathname}${window.location.search}`;
+
+        if (nextOptions.replace) {
+          window.history.replaceState({ category: filter }, "", nextUrl);
+        } else if (nextUrl !== currentUrl) {
+          window.history.pushState({ category: filter }, "", nextUrl);
+        }
+      }
+    }
+
+    categoryListEl.querySelectorAll(".works-category-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter") || ALL_FILTER;
+        applyFilter(filter, { updateHistory: true });
+      });
+    });
+
+    window.addEventListener("popstate", () => {
+      applyFilter(filterFromSearch(window.location.search, categories));
+    });
+
+    applyFilter(filterFromSearch(window.location.search, categories), {
+      updateHistory: true,
+      replace: true,
+    });
+
+    navEl.hidden = false;
+  }
+
+  /**
+   * @returns {Promise<string[] | null>}
+   */
+  async function loadCanonicalNames() {
+    if (!window.WorksCategories) {
+      return null;
+    }
+
+    return window.WorksCategories.loadCanonicalWorksCategoryNames(
+      window.fetch.bind(window),
+      window.location.href,
+    );
+  }
+
   async function init() {
     showMessage(LOADING_MESSAGE);
 
@@ -410,7 +602,10 @@
         return;
       }
 
+      const canonicalNames = await loadCanonicalNames();
+      const usedNames = parsed.works.map((work) => work.category);
       renderWorks(parsed.works);
+      renderCategoryNav(visibleCategories(usedNames, canonicalNames));
     } catch (error) {
       console.error("[works-list] failed to load works-index.json", error);
       showMessage(ERROR_MESSAGE);
