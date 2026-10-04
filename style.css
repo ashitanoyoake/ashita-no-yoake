@@ -1130,6 +1130,12 @@ body.instagram-modal-open {
     background-color 0.2s ease;
 }
 
+a.blog-category-button {
+  display: block;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 .blog-category-button:hover {
   color: var(--color-accent);
   border-color: var(--color-accent);

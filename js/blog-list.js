@@ -253,6 +253,22 @@
     });
 
     bindCategoryFilter();
+    applyInitialCategoryFilter();
+  }
+
+  function applyInitialCategoryFilter() {
+    if (!categoryListEl || !window.BlogPostCategory) {
+      return;
+    }
+
+    const requested = window.BlogPostCategory.readBlogListCategoryFilter(window.location.search);
+    const buttons = categoryListEl.querySelectorAll(".blog-category-button");
+    const filter = window.BlogPostCategory.resolveActiveBlogListFilter(buttons, requested);
+
+    buttons.forEach((button) => {
+      button.classList.toggle("is-active", button.dataset.filter === filter);
+    });
+    filterBlogItems(filter);
   }
 
   /**
