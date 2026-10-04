@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "categories": [
+    {
+      "id": 1,
+      "name": "個人サイト"
+    },
+    {
+      "id": 2,
+      "name": "テストカテゴリー"
+    }
+  ]
+}
