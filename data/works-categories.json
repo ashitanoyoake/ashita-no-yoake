@@ -2,10 +2,6 @@
   "schemaVersion": 1,
   "categories": [
     {
-      "id": 2,
-      "name": "テストカテゴリー"
-    },
-    {
       "id": 1,
       "name": "個人サイト"
     }
