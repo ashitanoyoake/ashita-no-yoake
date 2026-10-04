@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "categories": [
     {
-      "id": 2,
-      "name": "ブログ"
-    },
-    {
       "id": 1,
       "name": "お知らせ"
+    },
+    {
+      "id": 2,
+      "name": "ブログ"
     },
     {
       "id": 3,
