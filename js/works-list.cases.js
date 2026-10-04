@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 const {
   parseWorksCategoriesDocument,
   collectUsedWorkCategoryNames,
@@ -110,6 +113,18 @@ function runAshitaWorksListCases() {
 
   assert(cardShowsCategoryBadge("") === false, "S empty category keeps no badge");
   assert(cardShowsCategoryBadge("個人サイト") === true, "S named category still shows a badge");
+
+  const worksHtml = fs.readFileSync(path.join(__dirname, "..", "works.html"), "utf8");
+  const worksListJs = fs.readFileSync(path.join(__dirname, "works-list.js"), "utf8");
+  const homeHtml = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
+  assert(worksHtml.includes("<title>作品紹介 | あしたの夜明け.com</title>"), "T works title uses 作品紹介");
+  assert(worksHtml.includes('content="作品紹介 — あしたの夜明け.com"'), "T works description uses 作品紹介");
+  assert(worksHtml.includes('aria-label="作品紹介"'), "T works section aria-label uses 作品紹介");
+  assert(worksHtml.includes('aria-label="作品紹介カテゴリー"'), "T category nav aria-label uses 作品紹介");
+  assert(worksListJs.includes('EMPTY_MESSAGE = "作品紹介はまだありません"'), "T empty message uses 作品紹介");
+  assert(worksListJs.includes('ERROR_MESSAGE = "作品紹介を読み込めませんでした"'), "T error message uses 作品紹介");
+  assert(worksListJs.includes("の作品紹介画像"), "T card image alt uses 作品紹介");
+  assert(homeHtml.includes("ブログ、作品紹介をゆっくり公開していく個人サイトです。"), "T home intro uses 作品紹介");
 
   console.log("ashita works list cases: all passed");
 }
