@@ -14,8 +14,8 @@
   if (!listEl || !messageEl) return;
 
   const LOADING_MESSAGE = "読み込み中...";
-  const EMPTY_MESSAGE = "作品紹介はまだありません";
-  const ERROR_MESSAGE = "作品紹介を読み込めませんでした";
+  const EMPTY_MESSAGE = "制作紹介はまだありません";
+  const ERROR_MESSAGE = "制作紹介を読み込めませんでした";
   const DETAIL_CUE = "詳細を見る";
   const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
   const ALL_FILTER =
@@ -287,7 +287,7 @@
       const img = document.createElement("img");
       img.className = "works-list-image";
       img.src = work.imageSrc;
-      img.alt = `${work.title}の作品紹介画像`;
+      img.alt = `${work.title}の制作紹介画像`;
       img.loading = "lazy";
       img.decoding = "async";
 
