@@ -481,7 +481,7 @@
 
     const showNav = window.WorksCategories
       ? window.WorksCategories.shouldShowWorksCategoryNav(categories)
-      : categories.length > 0;
+      : true;
 
     if (!showNav) {
       hideCategoryNav();
@@ -594,6 +594,7 @@
 
       if (parsed.rawCount === 0) {
         showMessage(EMPTY_MESSAGE);
+        renderCategoryNav([]);
         return;
       }
 

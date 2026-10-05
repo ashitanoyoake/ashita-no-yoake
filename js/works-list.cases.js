@@ -106,7 +106,22 @@ function runAshitaWorksListCases() {
     parseWorksCategoriesDocument({ schemaVersion: 1, categories: [] }),
     [],
   );
-  assert(shouldShowWorksCategoryNav(emptyVisible) === false, "Q empty categories hide the nav");
+  assert(emptyVisible.length === 0, "Q empty works keep no extra category buttons");
+  assert(shouldShowWorksCategoryNav(emptyVisible) === true, "Q empty works still show the nav");
+  assert(worksCategoryNavLabels(emptyVisible).join("/") === "すべて", "Q empty works show すべて only");
+
+  const unusedOnlyVisible = resolveVisibleWorksCategories(
+    parseWorksCategoriesDocument({
+      schemaVersion: 1,
+      categories: [
+        { id: 1, name: "仕事" },
+        { id: 2, name: "オリジナル" },
+      ],
+    }),
+    [],
+  );
+  assert(unusedOnlyVisible.includes("仕事") === false, "Q unused canonical stays hidden when no works");
+  assert(worksCategoryNavLabels(unusedOnlyVisible).join("/") === "すべて", "Q unused-only canonical still shows すべて only");
 
   const fallback = resolveVisibleWorksCategories(null, ["旧カテゴリー", "個人サイト"]);
   assert(fallback.join("/") === "旧カテゴリー/個人サイト", "R missing canonical falls back to first-seen");
@@ -121,6 +136,10 @@ function runAshitaWorksListCases() {
   assert(worksHtml.includes('content="制作紹介 — あしたの夜明け.com"'), "T works description uses 制作紹介");
   assert(worksHtml.includes('aria-label="制作紹介"'), "T works section aria-label uses 制作紹介");
   assert(worksHtml.includes('aria-label="制作紹介カテゴリー"'), "T category nav aria-label uses 制作紹介");
+  assert(
+    /rawCount === 0[\s\S]*renderCategoryNav\(\[\]\)/.test(worksListJs),
+    "T empty works still render the category nav",
+  );
   assert(worksListJs.includes('EMPTY_MESSAGE = "制作紹介はまだありません"'), "T empty message uses 制作紹介");
   assert(worksListJs.includes('ERROR_MESSAGE = "制作紹介を読み込めませんでした"'), "T error message uses 制作紹介");
   assert(worksListJs.includes("の制作紹介画像"), "T card image alt uses 制作紹介");
