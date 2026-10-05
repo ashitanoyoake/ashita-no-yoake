@@ -13,8 +13,8 @@
     gtag('config', 'G-9WKCQCYGFY');
   </script>
   <link rel="icon" href="images/favicon.png" type="image/png">
-  <meta name="description" content="イラスト作品一覧 — あしたの夜明け.com">
-  <title>イラスト | あしたの夜明け.com</title>
+  <meta name="description" content="ギャラリー作品一覧 — あしたの夜明け.com">
+  <title>ギャラリー | あしたの夜明け.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
@@ -39,7 +39,7 @@
       <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
         <ul class="nav-list">
           <li><a href="index.html">ホーム</a></li>
-          <li><a href="instagram.html" aria-current="page">イラスト</a></li>
+          <li><a href="instagram.html" aria-current="page">ギャラリー</a></li>
           <li><a href="blog.html">ブログ</a></li>
           <li><a href="works.html">制作紹介</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
@@ -53,13 +53,19 @@
       <div class="page-deco">
         <img src="images/guide/illustration.jpg" alt="" class="page-deco-image page-deco-image-sm" width="128" height="128">
       </div>
-      <h1 class="page-title">イラスト</h1>
+      <h1 class="page-title">ギャラリー</h1>
       <p class="page-lead">Instagramに投稿した作品を掲載するページです。</p>
     </header>
 
     <div class="instagram-gallery-wrap" data-instagram-gallery>
+      <nav class="instagram-categories" aria-label="Instagramカテゴリー" hidden>
+        <ul class="instagram-category-list"></ul>
+      </nav>
       <div class="instagram-gallery" aria-live="polite" hidden></div>
       <p class="instagram-gallery-message">読み込み中...</p>
+      <nav class="instagram-pagination" aria-label="投稿のページ" hidden>
+        <ul class="instagram-pagination-list"></ul>
+      </nav>
     </div>
 
     <p class="section-link">
@@ -77,11 +83,13 @@
   <div class="instagram-modal" role="dialog" aria-modal="true" aria-label="Instagram投稿の拡大表示" hidden>
     <div class="instagram-modal-inner">
       <button type="button" class="instagram-modal-close" aria-label="閉じる">×</button>
-      <button type="button" class="instagram-modal-prev" aria-label="前の投稿">←</button>
-      <button type="button" class="instagram-modal-next" aria-label="次の投稿">→</button>
-      <figure class="instagram-modal-figure">
+      <button type="button" class="instagram-modal-prev" aria-label="前の画像" hidden>←</button>
+      <button type="button" class="instagram-modal-next" aria-label="次の画像" hidden>→</button>
+      <figure class="instagram-modal-figure instagram-modal-stage">
         <img class="instagram-modal-image" src="" alt="">
+        <p class="instagram-modal-counter" hidden aria-live="polite"></p>
         <figcaption class="instagram-modal-caption">
+          <p class="instagram-modal-date"></p>
           <a class="instagram-modal-link" href="#" target="_blank" rel="noopener noreferrer">Instagramの投稿を見る</a>
         </figcaption>
       </figure>
@@ -91,6 +99,7 @@
   <button class="page-top-button" type="button" aria-label="ページトップへ戻る">↑ Top</button>
 
   <script src="script.js"></script>
+  <script src="js/instagram-classifications.js"></script>
   <script src="js/instagram-gallery.js"></script>
 </body>
 </html>
