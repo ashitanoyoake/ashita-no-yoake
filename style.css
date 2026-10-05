@@ -5,6 +5,8 @@
   --color-cream: #f8f4e6;
   --color-cream-dark: #ebe4cf;
   --color-white: #ffffff;
+  --color-bg: #faf8f3; /* ページ全体のベース背景（試作） */
+  --color-intro-bg: #f5eedc; /* 自己紹介エリア背景（試作） */
   --color-text: #3a3a3a;
   --color-text-muted: #888888;
   --color-border: #f0f0f0;
@@ -43,7 +45,7 @@ body {
   line-height: 1.9;
   letter-spacing: 0.04em;
   color: var(--color-text);
-  background-color: var(--color-white);
+  background-color: var(--color-bg);
 }
 
 img {
@@ -398,7 +400,7 @@ main.page-main {
   padding: var(--space-lg);
   border: none;
   border-radius: var(--radius);
-  background-color: var(--color-cream);
+  background-color: var(--color-intro-bg);
 }
 
 .intro-sns {

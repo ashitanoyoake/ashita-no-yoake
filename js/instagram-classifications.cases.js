@@ -40,6 +40,10 @@ function makePosts(count) {
 
 function runAshitaInstagramGalleryCases() {
   const repoRoot = path.join(__dirname, "..");
+  const classificationsPath = path.join(repoRoot, "data", "instagram-classifications.json");
+  assert(fs.existsSync(classificationsPath), "canonical file exists for production gallery");
+  const canonicalBefore = fs.readFileSync(classificationsPath, "utf8");
+
   const archive = JSON.parse(fs.readFileSync(path.join(repoRoot, "data", "instagram.json"), "utf8"));
   const existingPosts = archive.posts;
   const firstId = String(existingPosts[0].id);
@@ -173,7 +177,33 @@ function runAshitaInstagramGalleryCases() {
     "V illustration.html redirect is kept",
   );
   assert(illustrationHtml.includes("ギャラリーページへ移動"), "H illustration.html fallback still names the gallery");
-  assert(!fs.existsSync(path.join(repoRoot, "data", "instagram-classifications.json")), "canonical file is not created");
+  const productionCanonical = parseClassifications(JSON.parse(canonicalBefore));
+  assert(productionCanonical !== null, "production canonical parses");
+  assert(
+    productionCanonical.categories.some((item) => item.name === "イラスト"),
+    "production canonical includes イラスト",
+  );
+  assert(
+    Object.keys(productionCanonical.assignments).length >= 1,
+    "production canonical has assignments",
+  );
+  const classificationsHelperJs = fs.readFileSync(
+    path.join(__dirname, "instagram-classifications.js"),
+    "utf8",
+  );
+  assert(
+    !galleryJs.includes("writeFileSync") && !galleryJs.includes("writeFile("),
+    "gallery does not write the canonical file",
+  );
+  assert(
+    !classificationsHelperJs.includes("writeFileSync") &&
+      !classificationsHelperJs.includes("writeFile("),
+    "classifications helper does not write the canonical file",
+  );
+  assert(
+    fs.readFileSync(classificationsPath, "utf8") === canonicalBefore,
+    "cases do not modify the production canonical",
+  );
   assert(indexHtml.includes("instagram.html"), "G home still links to instagram.html");
   assert(indexHtml.includes("<h3 class=\"guide-card-title\">ギャラリー</h3>"), "E home guide card is ギャラリー");
   assert(indexHtml.includes("href=\"instagram.html\">ギャラリー</a>"), "E home nav is ギャラリー");
