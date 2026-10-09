@@ -2,7 +2,9 @@
   "siteId": "ashitanoyoake",
   "managedPaths": [
     "blog/cms公開テスト.html",
+    "blog/端末間共有・初回公開テスト.html",
     "data/posts/2026-08-25-cms公開テスト.md",
+    "data/posts/2026-10-09-端末間共有・初回公開テスト.md",
     "data/posts/posts-index.json",
     "data/works/works-canonical.json",
     "data/works/works-index.json",
@@ -10,5 +12,5 @@
     "sitemap.xml",
     "works/あしたの夜明けcom.html"
   ],
-  "updatedAt": "2026-10-09T07:43:36.309Z"
+  "updatedAt": "2026-10-09T08:19:16.757Z"
 }

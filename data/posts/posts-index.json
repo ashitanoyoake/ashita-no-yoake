@@ -1,5 +1,17 @@
 [
   {
+    "id": 8,
+    "title": "端末間共有・初回公開テスト",
+    "publishDate": "2026-10-09",
+    "category": "お知らせ",
+    "tags": [],
+    "thumbnail": "",
+    "slug": "端末間共有・初回公開テスト",
+    "markdownPath": "2026-10-09-端末間共有・初回公開テスト.md",
+    "excerpt": "PCで作成した共有下書きです。 iPhoneから初回公開できるか確認します。 iPhoneで編集しました。",
+    "updatedAt": "2026-10-09T08:19:14.663Z"
+  },
+  {
     "id": 7,
     "title": "CMS公開テスト",
     "publishDate": "2026-08-25",
