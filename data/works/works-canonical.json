@@ -65,7 +65,7 @@
       "summary": "イラストや映画の感想、日常の記録を発信する個人サイトです。HTML/CSS/JavaScriptを用いて制作し、独自ドメイン設定やInstagram連携、GitHub Actionsによる自動化なども取り入れています。",
       "featuredImage": "/images/posts/88cf6717.png",
       "additionalImages": [
-        "/images/posts/00c4527e.png",
+        "/images/posts/7e9ff929.png",
         "/images/posts/696cda2b.png"
       ],
       "producedAt": "2026-07-01",
@@ -111,7 +111,7 @@
         "pc",
         "phone"
       ],
-      "updatedAt": "2026-10-10T08:43:26.397Z",
+      "updatedAt": "2026-10-10T08:45:13.350Z",
       "externalLink": "https://ashitanoyoake.com/"
     }
   ]

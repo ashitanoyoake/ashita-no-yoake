@@ -4,9 +4,9 @@
     "data/posts/posts-index.json",
     "data/works/works-canonical.json",
     "data/works/works-index.json",
-    "images/posts/00c4527e.png",
     "images/posts/548115bd.png",
     "images/posts/696cda2b.png",
+    "images/posts/7e9ff929.png",
     "images/posts/88cf6717.png",
     "images/posts/a29de568.png",
     "images/posts/b2094074.png",
@@ -14,5 +14,5 @@
     "works/あしたの夜明けcom.html",
     "works/おつまみ日記！.html"
   ],
-  "updatedAt": "2026-10-10T08:43:30.221Z"
+  "updatedAt": "2026-10-10T08:45:15.608Z"
 }
