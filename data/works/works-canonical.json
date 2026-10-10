@@ -52,7 +52,12 @@
           "text": "既存サイトの制作経験を活かしながら、デザインの統一感と更新のしやすさを両立する方法を学びました。また、複数サイトを一つのCMSで管理するためのデータ共有や権限管理にも取り組みました。"
         }
       ],
-      "updatedAt": "2026-10-10T07:52:01.415Z",
+      "featuredImageDisplayKind": "pc",
+      "additionalImageDisplayKinds": [
+        "pc",
+        "phone"
+      ],
+      "updatedAt": "2026-10-10T08:13:43.621Z",
       "externalLink": "https://otsumaminikki.com/"
     },
     {
