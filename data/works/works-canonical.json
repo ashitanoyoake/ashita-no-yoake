@@ -2,27 +2,6 @@
   "schemaVersion": 1,
   "works": [
     {
-      "id": 2,
-      "title": "共有テスト",
-      "slug": "共有テスト",
-      "status": "公開",
-      "publishedAt": "2026-10-10",
-      "category": "",
-      "summary": "",
-      "featuredImage": "",
-      "additionalImages": [],
-      "producedAt": "",
-      "productionInfo": {},
-      "contentBlocks": [
-        {
-          "id": "block-1791593547856-4",
-          "type": "paragraph",
-          "text": "本文テスト\n\niPhoneからテスト\n\n更新テスト"
-        }
-      ],
-      "updatedAt": "2026-10-10T01:35:27.845Z"
-    },
-    {
       "id": 1,
       "title": "あしたの夜明け.com",
       "slug": "あしたの夜明けcom",
