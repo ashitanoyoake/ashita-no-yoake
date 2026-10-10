@@ -2,6 +2,60 @@
   "schemaVersion": 1,
   "works": [
     {
+      "id": 2,
+      "title": "おつまみ日記！",
+      "slug": "おつまみ日記！",
+      "status": "公開",
+      "publishedAt": "2026-10-10",
+      "category": "個人サイト",
+      "summary": "イラストや日々の活動を紹介する個人サイトです。作品や文章が自然に引き立つよう、白を基調としたシンプルなデザインと、ゆとりのあるレイアウトを採用しました。スマートフォンでも快適に閲覧できる構成にしています。",
+      "featuredImage": "/images/posts/8186a6ce.png",
+      "additionalImages": [
+        "/images/posts/fe5fc3e6.png",
+        "/images/posts/6274f6b6.png"
+      ],
+      "producedAt": "",
+      "productionInfo": {
+        "scope": [
+          "企画",
+          "UIデザイン",
+          "コーディング",
+          "レスポンシブ対応",
+          "独自CMS連携",
+          "Instagram連携"
+        ],
+        "techStack": [
+          "HTML",
+          "CSS",
+          "JavaScript",
+          "Cursor",
+          "ChatGPT",
+          "GitHub",
+          "GitHub Pages",
+          "Cloudflare Workers"
+        ]
+      },
+      "contentBlocks": [
+        {
+          "id": "block-1791612318324-12",
+          "type": "paragraph",
+          "text": "イラスト作品の紹介、ブログ、Instagramとの連携、お問い合わせなど、活動に必要な機能を備えたWebサイトを制作しました。\n\nデザインからコーディングまでを担当し、独自開発したCMS「コンテンツルーム」と連携。PCやスマートフォンから記事や作品を更新できる、運用しやすい仕組みも整えています。"
+        },
+        {
+          "id": "block-1791612473047-13",
+          "type": "heading",
+          "text": "学び"
+        },
+        {
+          "id": "block-1791612479898-14",
+          "type": "paragraph",
+          "text": "既存サイトの制作経験を活かしながら、デザインの統一感と更新のしやすさを両立する方法を学びました。また、複数サイトを一つのCMSで管理するためのデータ共有や権限管理にも取り組みました。"
+        }
+      ],
+      "updatedAt": "2026-10-10T07:13:30.735Z",
+      "externalLink": "https://otsumaminikki.com/"
+    },
+    {
       "id": 1,
       "title": "あしたの夜明け.com",
       "slug": "あしたの夜明けcom",
