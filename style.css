@@ -1920,6 +1920,149 @@ a.blog-category-button {
   height: auto;
 }
 
+.work-detail__media {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: 100%;
+  min-width: 0;
+}
+
+.work-detail__device-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(9rem, 0.7fr);
+  gap: var(--space-md);
+  align-items: end;
+  width: 100%;
+}
+
+.work-detail__device-pair-pc,
+.work-detail__device-pair-phone {
+  min-width: 0;
+}
+
+.work-detail__device-pair-phone {
+  max-width: 15rem;
+  justify-self: end;
+  width: 100%;
+}
+
+.work-media__zoom {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.work-media__zoom:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.work-media__frame--pc .work-detail__hero-image,
+.work-media__frame--plain .work-detail__hero-image,
+.work-media__phone-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.work-media__frame--phone {
+  width: 100%;
+}
+
+.work-media__phone-shell {
+  padding: 0.75rem;
+  border: 2px solid #cfc6bb;
+  border-radius: 1.75rem;
+  background: linear-gradient(180deg, #faf7f2 0%, #efe8de 100%);
+  box-shadow: 0 12px 28px rgba(70, 55, 40, 0.12);
+}
+
+.work-media__phone-notch {
+  width: 30%;
+  height: 0.38rem;
+  margin: 0 auto 0.55rem;
+  border-radius: 999px;
+  background: #b9b0a4;
+}
+
+.work-media__phone-screen {
+  overflow: hidden;
+  border-radius: 1rem;
+  background: var(--color-white);
+}
+
+.work-gallery__item--pc,
+.work-gallery__item--phone,
+.work-gallery__item--plain {
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.work-gallery__item--phone {
+  max-width: 14rem;
+  margin-inline: auto;
+}
+
+.work-lightbox {
+  max-width: min(96vw, 1100px);
+  max-height: 92vh;
+  padding: 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+}
+
+.work-lightbox::backdrop {
+  background: rgba(40, 32, 24, 0.55);
+}
+
+.work-lightbox__form {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 0 0.55rem;
+}
+
+.work-lightbox__close {
+  appearance: none;
+  padding: 0.35rem 0.8rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--color-text);
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.work-lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 3.5rem);
+  width: auto;
+  height: auto;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .work-detail__device-pair {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .work-detail__device-pair-phone {
+    max-width: 13rem;
+    justify-self: center;
+  }
+}
+
 .work-detail__link {
   display: flex;
   justify-content: center;
