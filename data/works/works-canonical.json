@@ -52,11 +52,6 @@
           "text": "既存サイトの制作経験を活かしながら、デザインの統一感と更新のしやすさを両立する方法を学びました。また、複数サイトを一つのCMSで管理するためのデータ共有や権限管理にも取り組みました。"
         }
       ],
-      "featuredImageDisplayKind": "pc",
-      "additionalImageDisplayKinds": [
-        "pc",
-        "phone"
-      ],
       "updatedAt": "2026-10-10T08:19:30.498Z",
       "externalLink": "https://otsumaminikki.com/"
     },
@@ -68,8 +63,11 @@
       "publishedAt": "2026-09-08",
       "category": "個人サイト",
       "summary": "イラストや映画の感想、日常の記録を発信する個人サイトです。HTML/CSS/JavaScriptを用いて制作し、独自ドメイン設定やInstagram連携、GitHub Actionsによる自動化なども取り入れています。",
-      "featuredImage": "/images/posts/9d51c665.jpg",
-      "additionalImages": [],
+      "featuredImage": "/images/posts/88cf6717.png",
+      "additionalImages": [
+        "/images/posts/00c4527e.png",
+        "/images/posts/696cda2b.png"
+      ],
       "producedAt": "2026-07-01",
       "productionInfo": {
         "scope": [
@@ -108,7 +106,12 @@
           "text": "CursorとChatGPTを開発支援に活用し、提案されたコードを確認・修正しながら、設計、実装、ブラウザ確認、Gitによる変更管理までを繰り返す開発の流れを学びました。"
         }
       ],
-      "updatedAt": "2026-09-11T04:31:03.565Z",
+      "featuredImageDisplayKind": "pc",
+      "additionalImageDisplayKinds": [
+        "pc",
+        "phone"
+      ],
+      "updatedAt": "2026-10-10T08:43:26.397Z",
       "externalLink": "https://ashitanoyoake.com/"
     }
   ]
