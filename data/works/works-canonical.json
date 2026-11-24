@@ -52,11 +52,6 @@
           "text": "既存サイトの制作経験を活かしながら、デザインの統一感と更新のしやすさを両立する方法を学びました。また、複数サイトを一つのCMSで管理するためのデータ共有や権限管理にも取り組みました。"
         }
       ],
-      "featuredImageDisplayKind": "pc",
-      "additionalImageDisplayKinds": [
-        "pc",
-        "phone"
-      ],
       "updatedAt": "2026-10-10T08:57:17.417Z",
       "externalLink": "https://otsumaminikki.com/"
     },
@@ -111,7 +106,12 @@
           "text": "CursorとChatGPTを開発支援に活用し、提案されたコードを確認・修正しながら、設計、実装、ブラウザ確認、Gitによる変更管理までを繰り返す開発の流れを学びました。"
         }
       ],
-      "updatedAt": "2026-10-10T08:45:13.350Z",
+      "featuredImageDisplayKind": "pc",
+      "additionalImageDisplayKinds": [
+        "pc",
+        "phone"
+      ],
+      "updatedAt": "2026-11-24T04:26:26.441Z",
       "externalLink": "https://ashitanoyoake.com/"
     }
   ]
