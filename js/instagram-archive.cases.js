@@ -21,7 +21,14 @@ async function runAshitaInstagramArchiveCases() {
     sortPostsByTimestampDesc,
     writeArchiveIfChanged,
     readAfterCursor,
+    savePostsMedia,
+    selectHourlyMediaPosts,
   } = await import("../scripts/fetch-instagram.mjs");
+  const { createMemoryMediaStore, R2_PUBLIC_BASE } = await import("../scripts/r2.mjs");
+  const MINIMAL_JPEG = Buffer.from(
+    "ffd8ffe000104a46494600010100000100010000ffd9",
+    "hex",
+  );
 
   const older = {
     id: "old1",
@@ -174,6 +181,143 @@ async function runAshitaInstagramArchiveCases() {
 
   fs.rmSync(tmpDir, { recursive: true, force: true });
 
+  const mockFetch = async () =>
+    new Response(MINIMAL_JPEG, {
+      status: 200,
+      headers: { "Content-Type": "image/jpeg" },
+    });
+
+  const imagePost = {
+    id: "10000000000000001",
+    media_type: "IMAGE",
+    media_url: "https://cdn.example/a.jpg",
+    permalink: "https://www.instagram.com/p/a/",
+    thumbnail_url: null,
+    timestamp: "2026-08-01T00:00:00+0000",
+  };
+  const carouselPost = {
+    id: "10000000000000002",
+    media_type: "CAROUSEL_ALBUM",
+    media_url: "https://cdn.example/cover.jpg",
+    permalink: "https://www.instagram.com/p/b/",
+    thumbnail_url: null,
+    timestamp: "2026-08-02T00:00:00+0000",
+    children: [
+      {
+        id: "20000000000000001",
+        media_type: "IMAGE",
+        media_url: "https://cdn.example/c1.jpg",
+        thumbnail_url: null,
+      },
+      {
+        id: "20000000000000002",
+        media_type: "VIDEO",
+        media_url: "https://cdn.example/c2.mp4",
+        thumbnail_url: "https://cdn.example/c2.jpg",
+      },
+    ],
+  };
+  const videoPost = {
+    id: "10000000000000003",
+    media_type: "VIDEO",
+    media_url: "https://cdn.example/v.mp4",
+    permalink: "https://www.instagram.com/p/c/",
+    thumbnail_url: "https://cdn.example/v.jpg",
+    timestamp: "2026-08-03T00:00:00+0000",
+  };
+
+  const store = createMemoryMediaStore();
+  const mediaDir = fs.mkdtempSync(path.join(os.tmpdir(), "ig-media-"));
+  const saveTargets = [imagePost, carouselPost, videoPost].map((post) =>
+    JSON.parse(JSON.stringify(post)),
+  );
+  const firstSave = await savePostsMedia(saveTargets, {
+    store,
+    mediaDir,
+    fetchImpl: mockFetch,
+    trustStoredUrl: true,
+  });
+  assert(firstSave.downloaded >= 3, "R2 save uploads image/carousel/video media");
+  assert(
+    saveTargets[0].local_media_path === `${R2_PUBLIC_BASE}/posts/10000000000000001.jpg`,
+    "IMAGE gets local_media_path on success",
+  );
+  assert(
+    saveTargets[1].children[0].local_media_path ===
+      `${R2_PUBLIC_BASE}/posts/20000000000000001.jpg`,
+    "carousel IMAGE child is stored",
+  );
+  assert(
+    saveTargets[1].children[1].local_media_path ===
+      `${R2_PUBLIC_BASE}/posts/20000000000000002.jpg`,
+    "carousel VIDEO child stores thumbnail",
+  );
+  assert(
+    saveTargets[1].local_media_path === saveTargets[1].children[0].local_media_path,
+    "carousel parent uses first child local path",
+  );
+  assert(
+    saveTargets[2].local_media_path === `${R2_PUBLIC_BASE}/posts/10000000000000003.jpg`,
+    "VIDEO post stores thumbnail as local_media_path",
+  );
+
+  const secondSave = await savePostsMedia(saveTargets, {
+    store,
+    mediaDir,
+    fetchImpl: mockFetch,
+    trustStoredUrl: true,
+  });
+  assert(secondSave.downloaded === 0, "existing R2 objects are not re-uploaded");
+  assert(secondSave.skipped >= 3, "existing media is skipped");
+
+  const failPost = {
+    id: "10000000000000099",
+    media_type: "IMAGE",
+    media_url: "https://cdn.example/fail.jpg",
+    permalink: "https://www.instagram.com/p/fail/",
+    thumbnail_url: null,
+    timestamp: "2026-08-04T00:00:00+0000",
+    local_media_path: `${R2_PUBLIC_BASE}/posts/10000000000000099.jpg`,
+  };
+  const failFetch = async () => new Response("nope", { status: 403 });
+  const preserved = await savePostsMedia([failPost], {
+    store,
+    mediaDir,
+    fetchImpl: failFetch,
+    trustStoredUrl: true,
+  });
+  assert(preserved.downloaded === 0, "failed remote fetch does not upload");
+  assert(
+    failPost.local_media_path === `${R2_PUBLIC_BASE}/posts/10000000000000099.jpg`,
+    "existing local_media_path is kept on save skip/fail path",
+  );
+
+  const hourly = selectHourlyMediaPosts(
+    [{ id: "a" }, { id: "b" }, { id: "c" }],
+    [{ id: "b" }],
+  );
+  assert(
+    hourly.length === 1 && String(hourly[0].id) === "b",
+    "hourly media selection keeps only incoming ids",
+  );
+
+  const withLocal = mergeArchives(
+    [
+      {
+        ...older,
+        local_media_path: `${R2_PUBLIC_BASE}/posts/old1.jpg`,
+      },
+    ],
+    [newer],
+  );
+  assert(
+    withLocal.posts.find((post) => post.id === "old1").local_media_path ===
+      `${R2_PUBLIC_BASE}/posts/old1.jpg`,
+    "merge keeps existing local_media_path for untouched posts",
+  );
+
+  fs.rmSync(mediaDir, { recursive: true, force: true });
+
   const repoRoot = path.join(__dirname, "..");
   const classificationsPath = path.join(
     repoRoot,
@@ -188,6 +332,15 @@ async function runAshitaInstagramArchiveCases() {
   assert(
     fs.readFileSync(classificationsPath, "utf8") === classificationsBefore,
     "archive cases do not modify classifications",
+  );
+
+  const productionArchive = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "data", "instagram.json"), "utf8"),
+  );
+  assert(Array.isArray(productionArchive.posts), "production archive remains readable");
+  assert(
+    productionArchive.posts.every((post) => post && post.id && post.permalink),
+    "production posts keep id/permalink",
   );
 
   console.log("ashita instagram archive cases: all passed");

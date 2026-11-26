@@ -3,29 +3,53 @@
  * 毎時の fetch-instagram.mjs とは分離し、paging.cursors.after で API 終端まで取得する。
  *
  * - 既存 data/instagram.json は Media ID でマージし、削除しない
- * - R2 / media proxy は使わない
+ * - 画像は R2 へ Media ID 単位で保存。既存オブジェクトは再PUTしない
+ * - 1回あたりの新規アップロード数を制限し、再実行で未保存分を補完する
  * - Secret / access_token / paging.next はログに出さない
  */
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   BACKFILL_MAX_PAGES,
+  BACKFILL_MAX_UPLOADS,
   BACKFILL_PAGE_SIZE,
+  MEDIA_DIR,
   OUTPUT_PATH,
+  countPendingMedia,
   fetchInstagramPostsPaged,
   mergeArchives,
   readExistingArchive,
+  savePostsMedia,
   writeArchiveIfChanged,
 } from "./fetch-instagram.mjs";
+import { createR2MediaStore, readR2ConfigFromEnv } from "./r2.mjs";
 
 const EXIT_FAILURE = 1;
+
+/**
+ * @returns {number}
+ */
+export function readBackfillMaxUploads() {
+  const raw = process.env.BACKFILL_MAX_UPLOADS;
+  if (raw == null || raw === "") {
+    return BACKFILL_MAX_UPLOADS;
+  }
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed) || parsed < 1) {
+    throw new Error("BACKFILL_MAX_UPLOADS は1以上の整数である必要があります。");
+  }
+  return parsed;
+}
 
 /**
  * @param {{
  *   accessToken: string,
  *   userId: string,
+ *   store: { has: Function, put: Function },
  *   outputPath?: string,
+ *   mediaDir?: string,
  *   fetchImpl?: typeof fetch,
+ *   maxUploads?: number,
  *   pageSize?: number,
  *   maxPages?: number,
  *   log?: (message: string) => void,
@@ -34,6 +58,7 @@ const EXIT_FAILURE = 1;
 export async function runInstagramBackfill(options) {
   const log = options.log || console.log;
   const outputPath = options.outputPath || OUTPUT_PATH;
+  const maxUploads = options.maxUploads || BACKFILL_MAX_UPLOADS;
   const existing = readExistingArchive(outputPath);
   const fetched = await fetchInstagramPostsPaged(options.accessToken, options.userId, {
     fetchImpl: options.fetchImpl,
@@ -42,13 +67,23 @@ export async function runInstagramBackfill(options) {
     log,
   });
   const merged = mergeArchives(existing.posts, fetched.posts);
+  const mediaStats = await savePostsMedia(merged.posts, {
+    store: options.store,
+    mediaDir: options.mediaDir || MEDIA_DIR,
+    fetchImpl: options.fetchImpl,
+    maxUploads,
+    trustStoredUrl: true,
+  });
   const wroteJson = writeArchiveIfChanged(outputPath, existing, merged.posts);
+  const remaining = countPendingMedia(merged.posts);
 
   return {
     fetched,
     merged,
+    mediaStats,
     wroteJson,
-    complete: fetched.stoppedReason === "end",
+    remaining,
+    complete: remaining === 0 && fetched.stoppedReason === "end",
   };
 }
 
@@ -62,13 +97,20 @@ async function main() {
   }
 
   try {
+    const maxUploads = readBackfillMaxUploads();
+    const r2Config = readR2ConfigFromEnv();
     const result = await runInstagramBackfill({
       accessToken,
       userId,
+      store: createR2MediaStore(r2Config),
+      maxUploads,
     });
 
     console.log(
-      `Instagramバックフィル: 取得${result.fetched.posts.length}件 / 追加${result.merged.added} / 更新${result.merged.updated} / 保持${result.merged.kept} / 合計${result.merged.posts.length}件 / 停止=${result.fetched.stoppedReason} / ページ=${result.fetched.pagesFetched}`,
+      `Instagramバックフィル: 取得${result.fetched.posts.length}件 / 追加${result.merged.added} / 更新${result.merged.updated} / 保持${result.merged.kept} / 合計${result.merged.posts.length}件 / 停止=${result.fetched.stoppedReason}`,
+    );
+    console.log(
+      `画像: 保存${result.mediaStats.downloaded} / スキップ${result.mediaStats.skipped} / 失敗${result.mediaStats.failed} / 今回見送り${result.mediaStats.deferred} / 残り${result.remaining}`,
     );
     console.log(
       result.wroteJson
@@ -77,25 +119,21 @@ async function main() {
     );
 
     if (result.complete) {
-      console.log("バックフィル完了: API終端まで取得しました。");
+      console.log("バックフィル完了: 未保存画像はありません。");
       return;
     }
 
-    console.log(
-      "バックフィル未完了: max_pages 等で停止した可能性があります。必要なら再実行してください。",
-    );
+    console.log("バックフィル未完了: GitHub Actions の Backfill Instagram Archive を再実行してください。");
   } catch (error) {
-    const message =
-      error instanceof Error ? error.message : "Instagram API error (unknown)";
+    const message = error instanceof Error ? error.message : "Instagram API error (unknown)";
     console.error("Instagramバックフィルに失敗しました:", message);
-    console.error("既存の data/instagram.json は保持されます。");
+    console.error("既存の data/instagram.json と保存済み画像は保持されます。");
     process.exit(EXIT_FAILURE);
   }
 }
 
 const isDirectRun =
-  process.argv[1] &&
-  path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
+  process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url));
 
 if (isDirectRun) {
   main();

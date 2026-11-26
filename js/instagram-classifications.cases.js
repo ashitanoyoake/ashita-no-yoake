@@ -148,7 +148,9 @@ function runAshitaInstagramGalleryCases() {
   assert(galleryJs.includes("data/instagram.json"), "A default archive path is ashita data/instagram.json");
   assert(galleryJs.includes("data/instagram-classifications.json"), "A default classifications path is ashita data/instagram-classifications.json");
   assert(!galleryJs.includes("otsumaminikki.com"), "A gallery does not read otsumami data");
-  assert(!galleryJs.includes("instagram-media.otsumaminikki.com"), "R2/media proxy is not used");
+  assert(!galleryJs.includes("instagram-media.otsumaminikki.com"), "A gallery does not use otsumami R2 host");
+  assert(!galleryJs.includes("instagram-media.ashitanoyoake.com"), "A gallery does not hardcode ashita R2 host");
+  assert(galleryJs.includes("local_media_path"), "A gallery prefers local_media_path when present");
   assert(galleryJs.includes("selectClassifiedPosts"), "A classified posts only");
   assert(galleryJs.includes("ARCHIVE_EMPTY_MESSAGE"), "R 0 public posts has its own message");
   assert(galleryJs.includes("EMPTY_MESSAGE"), "Q archive fetch failure has an error message");
@@ -161,7 +163,6 @@ function runAshitaInstagramGalleryCases() {
   assert(galleryJs.includes("post.permalink"), "T Instagram permalink");
   assert(galleryJs.includes("getPostSlides"), "carousel uses archive children when present");
   assert(galleryJs.includes("post.children"), "carousel does not invent children");
-  assert(!galleryJs.includes("instagram-media"), "media proxy host is not introduced");
 
   assert(instagramHtml.includes("instagram-classifications.js"), "instagram.html loads classifications helper");
   assert(instagramHtml.includes("instagram-categories"), "instagram.html has category nav");

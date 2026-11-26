@@ -34,11 +34,14 @@
    *   permalink: string,
    *   media_type?: string,
    *   thumbnail_url?: string | null,
+   *   local_media_path?: string | null,
    *   timestamp: string,
    *   children?: Array<{
+   *     id?: string,
    *     media_url?: string,
    *     thumbnail_url?: string | null,
-   *     media_type?: string
+   *     media_type?: string,
+   *     local_media_path?: string | null
    *   }>
    * }} InstagramPost
    */
@@ -84,12 +87,17 @@
     : null;
 
   /**
-   * @param {{ media_type?: string, media_url?: string, thumbnail_url?: string | null } | null | undefined} item
+   * 保存済みURL（R2カスタムドメイン等）があればそれを使い、
+   * 未移行の既存投稿は CDN URL にフォールバックする。
+   * @param {{ media_type?: string, media_url?: string, thumbnail_url?: string | null, local_media_path?: string | null } | null | undefined} item
    * @returns {string}
    */
   function resolveMediaUrl(item) {
     if (!item) {
       return "";
+    }
+    if (typeof item.local_media_path === "string" && item.local_media_path) {
+      return item.local_media_path;
     }
     if (item.media_type === "VIDEO") {
       return item.thumbnail_url || item.media_url || "";
