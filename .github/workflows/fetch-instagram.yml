@@ -6,6 +6,11 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch:
 
+# バックフィルと同一グループ。実行中ジョブは中断せず、同時更新を直列化する。
+concurrency:
+  group: instagram-archive-update
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
